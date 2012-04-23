@@ -55,14 +55,7 @@ class user extends pageDefault {
             $this->_model->setId('fbk_id');
             $users = $this->_model->get($_REQUEST['fbk_id']);
             $users = is_array($users) ? $users  : array();
-            if(count($users) > 0) {
-                $return = array();
-                foreach ($users[0] as $key=>$u) {
-                    $return[$key] = utf8_encode($u);
-                }
-            } else {
-                $return = array('error' => "probleme lors de l'enregistrement");
-            }
+            $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
             die(json_encode($return));
             
         } else if(isset($_REQUEST['user_id'])) {
