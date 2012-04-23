@@ -1,4 +1,4 @@
-Site + blog => wordpress
+Site + blog (wordpress)
 =============
 
 Juste dupliquer le wp-config-sample.php en wp-config.php, le remplir correctement,
@@ -9,11 +9,11 @@ Faire aussi un petit
 
 sur le dossier wp-content, pour ne pas avoir de pb en local
 
-Iphone
+/iphone
 =============
 La partie de l'application Iphone qui est appelée en UIWebView
 
-API
+/api
 ===========
-L'api web, utilisé par le site, par l'application iphone, et par la UIWebView,
-juste installer la base de données, et se sert de wp-config.php pour s'y connecter
+L'api web, utilisée par le site, par l'application iphone, et par la UIWebView,
+juste installer la base de données. Se sert de wp-config.php pour s'y connecter
