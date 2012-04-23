@@ -57,7 +57,6 @@ class user extends pageDefault {
             $users = is_array($users) ? $users  : array();
             $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
             die(json_encode($return));
-            
         } else if(isset($_REQUEST['user_id'])) {
             
         } else {
