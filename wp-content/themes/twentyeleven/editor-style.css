@@ -1,0 +1,118 @@
+.alignleft {
+    float: left;
+    margin: 10px;
+}
+
+.alignright {
+    float: right;
+    margin: 10px;
+}
+#tinymce p, p {
+	line-height: 160%;
+	margin-bottom: 15px;
+}
+
+#content ul {
+    list-style: inside;
+    margin: 10px;
+}
+#content ol {
+    list-style: decimal;
+    margin: 10px;
+    padding-left: 19px;
+}
+#content li {
+    margin-bottom: 5px;
+}
+blockquote {
+	position: relative;
+    font-style: italic;
+    background:#F2F2F2;
+    padding: 6px 15px;
+    margin: 10px;
+}
+
+blockquote:before {
+	content: "“";
+	color: #333;
+	font-size: 34px;
+	margin-right: 10px;
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+
+blockquote:after {
+	content: "”";
+	color: #333;
+	font-size: 34px;
+	margin-right: 10px;
+	position: absolute;
+	bottom: 0;
+	right: 0px;
+}
+
+#tinymce p + h2, #tinymce ul + h2, #tinymce table + h2, #tinymce blockquote + h2, #tinymce dl + h2,
+#tinymce p + h3, #tinymce ul + h3, #tinymce table + h3, #tinymce blockquote + h3, #tinymce dl + h3,
+#tinymce p + h4, #tinymce ul + h4, #tinymce table + h4, #tinymce blockquote + h4, #tinymce dl + h4,
+#tinymce p + h5, #tinymce ul + h5, #tinymce table + h5, #tinymce blockquote + h5, #tinymce dl + h5,
+#tinymce p + h6, #tinymce ul + h6, #tinymce table + h6, #tinymce blockquote + h6, #tinymce dl + h6 {
+	margin-top: 30px;
+}
+
+/* @group Tableaux */
+
+table caption {
+	display: none;
+}
+
+table thead th {
+	border-bottom: 2px solid #ccc;
+	background: #f6f4f1;
+}
+
+/* @end */
+
+h1 {
+    font-size: 50px;
+    font-family: 'Tinos', serif;
+    line-height: 1;
+    margin-bottom: 25px;
+    color: #42a1dd;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: 'Tinos', serif;
+    line-height: 1;
+    margin-bottom: 16px;
+    color: #42a1dd;
+}
+
+h3 {
+    font-size: 30px;
+    font-family: 'Tinos', serif;
+    line-height: 1;
+    color: #42a1dd;
+    margin-bottom: 14px;
+}
+
+h4 {
+    font-size: 20px;
+    font-family: 'Tinos', serif;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+strong {
+    font-weight: bold;
+}
+em, i {
+    font-style: italic;
+}
+
+a {
+    text-decoration: none;
+    color: #42a1dd;
+    cursor: pointer;
+}
