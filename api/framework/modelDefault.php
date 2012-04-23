@@ -13,6 +13,7 @@
 
 class modelDefault {
     private  $_table;
+    private  $_id;
     
     public function __construct() {
         $this->db = Framework::load()->getBDD();
@@ -41,16 +42,16 @@ class modelDefault {
     }
     
     public function insert($tab) {
-        if(isset($tab['id'])) {
+        if(isset($tab[$this->_id])) {
            $q = "UPDATE `".$this->_table."` SET "; 
            $first = true;
            foreach ($tab as $col => $val) {
-               if($col == '' || $col == 'action' || $col == 'id') continue;
+               if($col == '' || $col == 'action' || $col == $this->_id) continue;
                if(!$first) $q.=', ';
                $q .= $col ." = '".addslashes($val)."'";
                $first = false;
            }         
-           $q .= " WHERE  `".$this->_table."`.`'.$this->_id.'` =".$tab['id'].";"; 
+           $q .= " WHERE  `".$this->_table."`.`".$this->_id."` =".$tab[$this->_id].";"; 
         } else {
             $q = 'INSERT INTO `'.$this->_table.'` ';
             $first = true;
@@ -73,7 +74,6 @@ class modelDefault {
             $q .= ' VALUES ';
             $q .= $insert;
         }
-
         $this->db->exec($q);
     }
 }
