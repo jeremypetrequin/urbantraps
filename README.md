@@ -9,11 +9,13 @@ Faire aussi un petit
 
 sur le dossier wp-content, pour ne pas avoir de pb en local
 
+(si accès a aucunes pages avec l'url rewritting, juste le désactiver dans le BO de WP, il marchera en prod)
+
 /iphone
 =============
 La partie de l'application Iphone qui est appelée en UIWebView
 
 /api
 ===========
-L'api web, utilisée par le site, par l'application iphone, et par la UIWebView,
+L'api web utilisée par le site, par l'application iphone, et par la UIWebView,
 juste installer la base de données. Se sert de wp-config.php pour s'y connecter
