@@ -85,6 +85,9 @@ class user extends pageDefault {
                     $this->_model->insert($insertInCity);
                     $resultVille['ville_id'] = $resultVille['id'];
                     unset ($resultVille['id']);
+                    $resultVille['ville_nom'] = $resultVille['nom'];
+                    unset ($resultVille['nom']);
+                    
                     $return = array_merge($resultVille, $return);
                     die(json_encode($return));
                 } else {

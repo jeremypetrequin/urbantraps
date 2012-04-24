@@ -15,7 +15,7 @@ class model_user extends modelDefault {
     
     public function getInCity($userID, $villeID) {
         $q = 'SELECT * FROM JoueurVille WHERE Ville_id ='.$villeID.' AND Joueur_id='.$userID;
-        echo $q;
+        
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         return is_array($tab) ? $tab : array();
     }

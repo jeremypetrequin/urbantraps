@@ -76,7 +76,8 @@ class ville extends pageDefault {
                             'webservice' => 0
                         );
                         $this->_model->insert($return);
-                        return $return;
+                        $cityBD = $this->_model->getCity($villeName, $zipCode);
+                        return $cityBD[0];
                 } else {
                     return false;
                 }
