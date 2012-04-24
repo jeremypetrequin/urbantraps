@@ -31,16 +31,13 @@ class user extends pageDefault {
             $user = is_array($user) ? $user  : array();
             
             $this->_model->setId('id');
-            echo 'dkeodke';
             if(!empty ($_REQUEST['lng']) && !empty ($_REQUEST['lat'])) {
-                
                 $ville = new ville();
-                
                 $resultVille = $ville->witchCity($_REQUEST['lat'], $_REQUEST['lng']);
             }
-            echo'<pre>';
-            print_r($resultVille);
-            echo '</pre>';
+            //echo'<pre>';
+            //print_r($resultVille);
+            //echo '</pre>';
             if(count($user) == 0) { //insert
                 $this->_model->insert(array(
                     'nom' => $_REQUEST['nom'],
