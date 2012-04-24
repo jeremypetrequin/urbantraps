@@ -25,13 +25,15 @@ class model_ville extends modelDefault {
         HAVING distance < rayon * 1000    
       ORDER BY distance ASC
          LIMIT 0, 1";
-        echo '<br />';
-        echo $q;
-        echo '<br />';
-        echo '<br />';
+       
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         return is_array($tab) ? $tab : array();
-        
+    }
+    
+    public function getCity($name, $zipcode) {
+        $q = 'SELECT * FROM Ville WHERE nom LIKE "%'.$name.'%" AND code_postal = "'.$zipcode.'"';
+        $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
+        return is_array($tab) ? $tab : array();
     }
 }
 

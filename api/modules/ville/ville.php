@@ -16,9 +16,7 @@ class ville extends pageDefault {
     } 
     
     public function __construct() {
-        echo 'CONSTRUCT';
-        //parent::__construct();
-        
+     
     }
     
     public function witchCity($lat, $lng) {
@@ -41,6 +39,8 @@ class ville extends pageDefault {
             echo $url;
             $json = file_get_contents($url);
             $reponse = json_decode($json);
+            echo '<pre>';
+            print_r($reponse);
             $villeName = '';
             $zipCode = '';
             if(isset($reponse->results) && count($reponse->results) > 0) {
@@ -57,6 +57,22 @@ class ville extends pageDefault {
             }
             
             $zipCode = isset($specific[$villeName]) ? $specific[$villeName] : $zipCode;
+            
+            $cityBD = $this->_model->getCity($villeName, $zipcode);
+            if(count($cityBD) == 0) {
+                /*
+                $this->_model->insert(array(
+                    'nom' => $villeName,
+                    'code_postal' => $zipCode,
+                    'lat' => 0,
+                    'lng' => 0,
+                    'rayon' => 5,
+                    'webservice' => 0
+                ));*/
+            }
+            echo '<pre>';
+            print_r($cityBD);
+            echo '</pre>';
             echo '<br />';
             echo $villeName;
             echo '<br />';
