@@ -22,7 +22,7 @@ class ville extends pageDefault {
     public function witchCity($lat, $lng) {
         $this->_model = new model_ville();
         
-        $specific = array(
+        $specific = array( //because several zipCode in one city...
             'paris' => 75000,
             'lyon' => 69000,
             'marseille' => 13000
@@ -53,6 +53,8 @@ class ville extends pageDefault {
                         }
                     }
                 }
+            } else {
+                return false;
             }
             
             $zipCode = isset($specific[$villeName]) ? $specific[$villeName] : $zipCode;
@@ -75,6 +77,8 @@ class ville extends pageDefault {
                         );
                         $this->_model->insert($return);
                         return $return;
+                } else {
+                    return false;
                 }
             } else {
                 return $cityBD[0];
