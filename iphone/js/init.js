@@ -1,59 +1,13 @@
 /**
- * TO LOOK
- * http://blackberry.github.com/Alice/demos/index.html
+ * just some test for now
  */
 
 ;(function($, w) {
     
-     var lng = 4.817676544189453;
-    var lat = 45.73841707992849;
+     var lat = CONFIG.lat,
+     lng = CONFIG.lng;
     
-    var style = [
-  {
-    elementType: "labels",
-    stylers: [
-      { visibility: "off" }
-    ]
-  },{
-    featureType: "water",
-    stylers: [
-      { saturation: 39 },
-      { hue: "#00ccff" },
-      { lightness: -12 }
-    ]
-  },{
-    featureType: "road",
-    stylers: [
-      { hue: "#ff0008" },
-      { saturation: -100 },
-      { lightness: -7 }
-    ]
-  },{
-    featureType: "road.local",
-    stylers: [
-      { visibility: "simplified" },
-      { lightness: -8 },
-      { saturation: -85 }
-    ]
-  },{
-    featureType: "landscape",
-    stylers: [
-      { visibility: "simplified" },
-      { saturation: -100 },
-      { lightness: 49 }
-    ]
-  },{
-    featureType: "poi",
-    stylers: [
-      { visibility: "off" }
-    ]
-  },{
-    featureType: "transit",
-    stylers: [
-      { visibility: "off" }
-    ]
-  }
-];
+    var style = [{elementType: "labels",stylers: [{ visibility: "off" }]},{featureType: "water",stylers: [{ saturation: 39 },{ hue: "#00ccff" },{ lightness: -12 }]},{featureType: "road",stylers: [{ hue: "#ff0008" },{ saturation: -100 },{ lightness: -7 }]},{featureType: "road.local",stylers: [{ visibility: "simplified" },{ lightness: -8 },{ saturation: -85 }]},{featureType: "landscape",stylers: [{ visibility: "simplified" },{ saturation: -100 },{ lightness: 49 }]},{featureType: "poi", stylers: [{ visibility: "off" }]},{ featureType: "transit", stylers: [{ visibility: "off" }]}];
     
     var $map = $('#map'),
     gmap = new Gmap($('#map'), {
@@ -66,9 +20,12 @@
     
     
    
- 
-    var marker = gmap.createMarker({id : i+'_'+a, position : [lat, lng]});
-    i++;
+    var markerUser = new google.maps.Marker({
+        map : gmap.map,
+        position : new google.maps.LatLng(lat, lng)
+    })
+    //var marker = gmap.createMarker({id : i+'_'+a, position : [lat, lng]});
+    //i++;
     var marker1 = gmap.createMarker({id : i+'_'+a, position : [lat, lng+0.01]});
     i++;
     var marker2 = gmap.createMarker({id : i+'_'+a, position : [lat+0.01, lng]});
