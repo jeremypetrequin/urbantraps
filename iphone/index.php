@@ -11,7 +11,12 @@
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/style.css">
-
+    <script>
+        var CONFIG = {
+            lat : <?php echo isset($_REQUEST['lat']) ? $_REQUEST['lat'] : 0; ?>,
+            lng : <?php echo isset($_REQUEST['lng']) ? $_REQUEST['lng'] : 0; ?>
+        }
+    </script>
     <?php //<script src="js/libs/modernizr-2.5.3.min.js"></script> ?>
 </head>
 <body>
