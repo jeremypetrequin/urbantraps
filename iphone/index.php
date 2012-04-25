@@ -45,6 +45,7 @@
      <script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <script src="js/badger/gmap/gmap.class.js"></script>
     <script src="js/badger/gmap/overlays/marker.class.js"></script>
+    <script src="js/badger/gmap/overlays/retinaMarker.class.js"></script>
     <script src="js/init.js"></script>
 </body>
 </html>

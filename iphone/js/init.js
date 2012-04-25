@@ -19,11 +19,16 @@
     var i = 1, a = 1;
     
     
-   
-    var markerUser = new google.maps.Marker({
-        map : gmap.map,
+
+    
+    var markerUser = new RetinaMarker({map : gmap.map}, {
+        size : {
+            width : 40,
+            height : 40
+        },
+        img  : 'img/iphoneMarkerGeoloc.png',
         position : new google.maps.LatLng(lat, lng)
-    })
+    });
     //var marker = gmap.createMarker({id : i+'_'+a, position : [lat, lng]});
     //i++;
     var marker1 = gmap.createMarker({id : i+'_'+a, position : [lat, lng+0.01]});
