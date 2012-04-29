@@ -15,17 +15,29 @@ class model_panneau extends modelDefault {
     } 
     
     /**
-     * doesn't tested anymore
+     * return list of panneau of a city, with game availlable on it
      * @param int $ville_id
      * @return array 
      */
     public function getJeuPanneau($ville_id) {
-        $q = "SELECT * FROM PanneauVille, Jeu
+        $q = "SELECT *, PanneauVille.id as panneau_ville_id, Jeu.id as jeu_id FROM PanneauVille, Jeu
                    WHERE Jeu.rarete <= PanneauVille.nb_check
                    AND PanneauVille.Ville_id = ".$ville_id;
         
-        $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
-        return is_array($tab) ? $tab : array();
+        $datas = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
+        $datas = is_array($datas) ? $datas : array();
+        $panneaux_id = array();
+        $return = array();
+        foreach($datas as $d) {
+            $return[$d['panneau_ville_id']]['panneau_id'] = $d['Panneau_id'];
+            $return[$d['panneau_ville_id']]['panneau_lat'] = $d['lat'];
+            $return[$d['panneau_ville_id']]['panneau_lng'] = $d['lng'];
+            $return[$d['panneau_ville_id']]['jeux'][] = array(
+                'jeu' => $d['nom'],
+                'id' => $d['jeu_id']
+            );
+        }
+        return $return;
     }
     
     /**

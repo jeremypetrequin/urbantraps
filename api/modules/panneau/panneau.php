@@ -30,6 +30,21 @@ class panneau extends pageDefault {
         ));
     }
     
+    /**
+     * print all panneau in a city, with game availlable on it
+     * url to call http://localhost:8888/urbantraps/api/?p=panneau&task=getJeuPanneau&city=1
+     */
+    protected function _getJeuPanneau() {
+        $this->_model = new model_panneau();
+        echo '<pre>';
+        print_r($this->_model->getJeuPanneau($_REQUEST['city']));
+        echo '</pre>';
+    }
+    
+    /**
+     *
+     * work in progress
+     */
     protected  function _getPanneauVille() {
         $this->_model = new model_panneau();
         if(!isset($_REQUEST['ville_id']) && empty ($_REQUEST['ville_id'])) return;
