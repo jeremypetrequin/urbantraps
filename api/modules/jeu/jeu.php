@@ -5,7 +5,7 @@
  * @package : /modules/jeu
  * @author : Badger
  * 
- * http://localhost:8888/urbantraps/api/?p=jeu&task=aJouer&joueur=1&panneau_jeu_id=2&score=1029
+ * http://localhost:8888/urbantraps/api/?p=jeu&task=aJouer&joueur=1&jeu_id=2&score=1029&panneau_ville_id=1
  */
 
 include_once(dirname(__FILE__).'/model_jeu.php');
@@ -18,9 +18,10 @@ class jeu extends pageDefault {
        
        $this->_model->insert(array(
            'Joueur_id' => 	$_REQUEST['joueur'],
-            'PanneauJeu_id'=>$_REQUEST['panneau_jeu_id'],
+            'Jeu_id'=>$_REQUEST['jeu_id'],
             'date' => date('Y/m/d H:i:s'),
-            'score' =>$_REQUEST['score']
+            'score' =>$_REQUEST['score'],
+           'PanneauVille_id' => $_REQUEST['panneau_ville_id']
        ));
     } 
     

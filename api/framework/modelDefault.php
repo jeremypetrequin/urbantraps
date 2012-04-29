@@ -74,6 +74,7 @@ class modelDefault {
             $q .= ' VALUES ';
             $q .= $insert;
         }
+        //echo $q;
         $this->db->exec($q);
     }
 }
