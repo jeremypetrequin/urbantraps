@@ -51,10 +51,12 @@ class panneau extends pageDefault {
         $data = $this->_model->getPanneauVille($_REQUEST['ville_id']);
         //$jeuByPanneau =  $this->_getJeuPanneau();
         
+        //echo '<pre>';
+        //print_r($data);
         $json1 = array();
         //build the json for the response, fucking array!
         foreach ($data as $d) {
-            $json1[$d['panneau_ville_id']]['panneau_nom'] = $d['panneau_nom'];
+            $json1[$d['panneau_ville_id']]['panneau_nom'] = utf8_encode($d['panneau_nom']);
             $json1[$d['panneau_ville_id']]['panneau_img'] = $d['panneau_img'];
             $json1[$d['panneau_ville_id']]['panneau_id'] = $d['panneau_id'];
             $json1[$d['panneau_ville_id']]['lat'] = $d['lat'];
@@ -71,11 +73,11 @@ class panneau extends pageDefault {
             }
         }
         
-        /*
-        echo '<pre>';
-        print_r($json1);
-        echo '</pre>';
-        */
+        
+        
+      //  print_r($json1);
+       // echo '</pre>';
+        
         echo json_encode($json1);
     }
 
