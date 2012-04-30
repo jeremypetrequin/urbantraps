@@ -76,6 +76,7 @@ class modelDefault {
         }
         //echo $q;
         $this->db->exec($q);
+        return $this->db->lastInsertId();
     }
 }
 

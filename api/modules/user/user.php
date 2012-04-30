@@ -23,6 +23,7 @@ class user extends pageDefault {
     } 
     
     protected function _connect() {
+        
         if(isset($_REQUEST['fbk_id'])) {
             $this->_model = new model_user();
             
@@ -31,15 +32,14 @@ class user extends pageDefault {
                 $resultVille = $ville->witchCity($_REQUEST['lat'], $_REQUEST['lng']);
                 
                 if(is_array($resultVille)) {
+                    
                     $this->_model->setId('fbk_id');
                     //check if exist
                     $user = $this->_model->get($_REQUEST['fbk_id']);
                     $user = is_array($user) ? $user  : array();
                     $this->_model->setId('id');
 
-                    //echo'<pre>';
-                    //print_r($resultVille);
-                    //echo '</pre>';
+                    
                     if(count($user) == 0) { //insert
                         $id = $this->_model->insert(array(
                             'nom' => $_REQUEST['nom'],
@@ -61,12 +61,13 @@ class user extends pageDefault {
                             'avatar' => $_REQUEST['avatar']
                         ));
                     }
+                    
                     //response
                     $this->_model->setId('fbk_id');
                     $users = $this->_model->get($_REQUEST['fbk_id']);
                     $users = is_array($users) ? $users  : array();
                     $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
-
+                    
                     $inCity = $this->_model->getInCity($id, $resultVille['id']);
 
                     if(count($inCity) == 0) {
@@ -79,7 +80,7 @@ class user extends pageDefault {
                         $insertInCity = $inCity[0];
                         $insertInCity['lastconnect'] = date("Y/m/d h:i:s");
                     } 
-
+                    
                     $this->_model->setTable('JoueurVille');
                     $this->_model->setId('id');
                     $this->_model->insert($insertInCity);
