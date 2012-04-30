@@ -77,7 +77,6 @@ class panneau extends pageDefault {
         echo '</pre>';
         */
         echo json_encode($json1);
-        
     }
 
     /**
