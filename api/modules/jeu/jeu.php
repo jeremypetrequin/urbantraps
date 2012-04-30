@@ -5,7 +5,7 @@
  * @package : /modules/jeu
  * @author : Badger
  * 
- * http://localhost:8888/urbantraps/api/?p=jeu&task=aJouer&joueur=1&jeu_id=2&score=1029&panneau_ville_id=1
+ * 
  */
 
 include_once(dirname(__FILE__).'/model_jeu.php');
@@ -13,6 +13,11 @@ include_once(dirname(__FILE__).'/model_jeu.php');
 class jeu extends pageDefault {
     private $_model = null;
     
+    /**
+     * url to call http://localhost:8888/urbantraps/api/?p=jeu&task=aJouer&joueur=1&jeu_id=2&score=1029&panneau_ville_id=1
+     * 
+     * if you want to put your own score, it's the moment!
+     */
     protected function _aJouer() {
        $this->_model = new model_jeu();
        

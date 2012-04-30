@@ -30,8 +30,8 @@ class model_panneau extends modelDefault {
         $return = array();
         foreach($datas as $d) {
             $return[$d['panneau_ville_id']]['panneau_id'] = $d['Panneau_id'];
-            $return[$d['panneau_ville_id']]['panneau_lat'] = $d['lat'];
-            $return[$d['panneau_ville_id']]['panneau_lng'] = $d['lng'];
+            $return[$d['panneau_ville_id']]['lat'] = $d['lat'];
+            $return[$d['panneau_ville_id']]['lng'] = $d['lng'];
             $return[$d['panneau_ville_id']]['jeux'][] = array(
                 'jeu' => $d['nom'],
                 'id' => $d['jeu_id']
@@ -49,7 +49,9 @@ class model_panneau extends modelDefault {
         $q = "  SELECT 
                     Panneau.nom as panneau_nom,
                     Panneau.img as panneau_img,
-
+                    
+                    PanneauVille.Panneau_id as panneau_id,
+                    PanneauVille.id as panneau_ville_id,
                     PanneauVille.lat as lat,
                     PanneauVille.lng as lng,
                     PanneauVille.nb_check as panneau_check,

@@ -32,23 +32,52 @@ class panneau extends pageDefault {
     
     /**
      * print all panneau in a city, with game availlable on it
-     * url to call http://localhost:8888/urbantraps/api/?p=panneau&task=getJeuPanneau&city=1
+     * url to call http://localhost:8888/urbantraps/api/?p=panneau&task=getJeuPanneau&ville_id=1
      */
     protected function _getJeuPanneau() {
-        $this->_model = new model_panneau();
-        echo '<pre>';
-        print_r($this->_model->getJeuPanneau($_REQUEST['city']));
-        echo '</pre>';
+        if(!isset($this->_model)) $this->_model = new model_panneau();
+        return $this->_model->getJeuPanneau($_REQUEST['ville_id']);
     }
     
     /**
      *
      * work in progress
+     * url to call http://localhost:8888/urbantraps/api/?p=panneau&task=getPanneauVille&ville_id=1
      */
     protected  function _getPanneauVille() {
-        $this->_model = new model_panneau();
         if(!isset($_REQUEST['ville_id']) && empty ($_REQUEST['ville_id'])) return;
+        
+        $this->_model = new model_panneau();
         $data = $this->_model->getPanneauVille($_REQUEST['ville_id']);
+        //$jeuByPanneau =  $this->_getJeuPanneau();
+        
+        $json1 = array();
+        //build the json for the response, fucking array!
+        foreach ($data as $d) {
+            $json1[$d['panneau_ville_id']]['panneau_nom'] = $d['panneau_nom'];
+            $json1[$d['panneau_ville_id']]['panneau_img'] = $d['panneau_img'];
+            $json1[$d['panneau_ville_id']]['panneau_id'] = $d['panneau_id'];
+            $json1[$d['panneau_ville_id']]['lat'] = $d['lat'];
+            $json1[$d['panneau_ville_id']]['lng'] = $d['lng'];
+            $json1[$d['panneau_ville_id']]['panneau_check'] = $d['panneau_check'];
+            $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['jeu_nom'] = $d['jeu_nom'];
+            if(!is_array($json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']) || $d['score_jeu'] > $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']['score_jeu']) {
+                $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader'] = array(
+                  "joueur_id" => $d['joueur_id'],  
+                  "joueur_nom" => $d['joueur_nom'],  
+                  "score_jeu" => $d['score_jeu'],  
+                  "joueur_avatar" => $d['joueur_avatar']  
+                );
+            }
+        }
+        
+        /*
+        echo '<pre>';
+        print_r($json1);
+        echo '</pre>';
+        */
+        echo json_encode($json1);
+        
     }
 
     /**
