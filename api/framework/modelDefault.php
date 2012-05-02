@@ -60,7 +60,7 @@ class modelDefault {
             foreach ($tab as $col => $val) {
                 if($col == '' || $col == 'action') continue;
                 if(!$first) $colonnes.=', ';
-                $colonnes .= $col;
+                $colonnes .= '`'.$col.'`';
                 
                 if(!$first) $insert.=', ';
                 
