@@ -13,14 +13,101 @@ class user extends pageDefault {
     private $_model = null;
     
     protected function _get() {
-        /*$date = Framework::load()->getTool('Date');
-        
-        $this->_model = new model_user();
-        $ret = $this->_model->getItems();
-        $ret = is_array($ret) ? $ret : array();
-        
-        echo json_encode($ret);*/
+
     } 
+    
+    /**
+     * return json with detail of a user activity
+     * url to call http://localhost:8888/urbantraps/api/?p=user&task=activity&user_id=2
+     */
+    protected  function _activity() {
+        if(isset($_REQUEST['user_id'])) {
+            $this->_model = new model_user();
+            $user_id = $_REQUEST['user_id'];
+            
+            //get data
+            $badges = $this->_model->getBadgeUser($user_id);
+            $ajouer = $this->_model->getAJouerJoueur($user_id);
+            $mission = $this->_model->getMissionJoueur($user_id);
+            
+            //handle data
+            $json1 = $this->_handleTableauTimeline($ajouer, "Tu as jouer à %game%", "sur un panneau %panneau% à %ville%, et tu as marqué %pts%pts", array(
+                'panneau' =>'panneau',
+                'game' =>'jeu',
+                'ville' =>'ville',
+                'pts' =>'score'
+            ), 'jouer');
+            
+            $json2 = $this->_handleTableauTimeline($mission, "Tu as réussi la mission %mission%", "et tu as gagné %pts%pts",array(
+                'mission' =>'nom',
+                'pts' => 'nb_pts'
+            ), 'mission');
+            
+            $json3 = $this->_handleTableauTimeline($badges, "Tu as gagné le badge %badge%", "", array('badge'=>'nom'), 'badge');
+            
+            
+            //merge all array
+            $json = array_merge(array_merge($json1, $json2), $json3);
+            
+            //sort the big array by date
+            $sorter = new array_sorter($json, 'date', false);
+            $json = $sorter->sortit();
+            
+            
+            //encode the array for json
+            $json = $this->_utf8_encoding_array($json);
+            //echo '<pre>';
+            //print_r($json);
+            //output the json
+            die(json_encode($json));
+            
+        }
+    }
+
+    /**
+     * encode all value in a array in utf8 (/!\ non recursive!, juste first level)
+     * @param array $array 
+     * @return array
+     */
+    private function _utf8_encoding_array($array) {
+        $return = array(); 
+        foreach ($array as $key => $value) {
+            foreach ($value as $k => $v) {
+                $return[$key][$k] = utf8_encode($v);
+            }
+        }
+
+        return $return;
+    }
+    
+    /**
+     * used for manage language in timeline
+     * @param array $tab
+     * @param string $trad_pattern1
+     * @param string $trad_pattern2
+     * @param array key=>value $trad_field
+     * @param string $type
+     * @return array 
+     */
+    private function _handleTableauTimeline($tab, $trad_pattern1, $trad_pattern2, $trad_field, $type) {
+        $return = array();
+        
+        foreach ($tab as $item) {
+            $item['type'] = $type;
+            $trad1 = $trad_pattern1;
+            $trad2 = $trad_pattern2;
+            foreach ($trad_field as $pattern=>$f) {
+                 $trad1 = str_replace('%'.$pattern.'%', $item[$f], $trad1); 
+                 $trad2 = str_replace('%'.$pattern.'%', $item[$f], $trad2); 
+            }
+            $item['trad1'] = $trad1;
+            $item['trad2'] = $trad2;
+            
+            $return[] = $item;
+        }
+        
+        return $return;
+    }
     
     protected function _connect() {
         
@@ -43,7 +130,7 @@ class user extends pageDefault {
                     if(count($user) == 0) { //insert
                         $id = $this->_model->insert(array(
                             'nom' => $_REQUEST['nom'],
-                            'created' => date("Y/m/d h:i:s"),
+                            'created' => date("Y/m/d H:i:s"),
                             'fbk_id' => $_REQUEST['fbk_id'],
                             'score' => '0',
                             'data' => '',
@@ -74,11 +161,11 @@ class user extends pageDefault {
                         $insertInCity = array(
                             'Ville_id' =>$resultVille['id'],
                             'Joueur_id' =>$id,
-                            'lastconnect' =>date("Y/m/d h:i:s")
+                            'lastconnect' =>date("Y/m/d H:i:s")
                         );
                     } else {
                         $insertInCity = $inCity[0];
-                        $insertInCity['lastconnect'] = date("Y/m/d h:i:s");
+                        $insertInCity['lastconnect'] = date("Y/m/d H:i:s");
                     } 
                     
                     $this->_model->setTable('JoueurVille');
