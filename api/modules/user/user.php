@@ -31,19 +31,19 @@ class user extends pageDefault {
             $mission = $this->_model->getMissionJoueur($user_id);
             
             //handle data
-            $json1 = $this->_handleTableauTimeline($ajouer, "Tu as jouer à %game%", "sur un panneau %panneau% à %ville%, et tu as marqué %pts%pts", array(
+            $json1 = $this->_handleTableauTimeline($ajouer, utf8_decode("Tu as jouer à %game%"), utf8_decode("sur un panneau %panneau% à %ville%, et tu as marqué %pts%pts"), array(
                 'panneau' =>'panneau',
                 'game' =>'jeu',
                 'ville' =>'ville',
                 'pts' =>'score'
             ), 'jouer');
             
-            $json2 = $this->_handleTableauTimeline($mission, "Tu as réussi la mission %mission%", "et tu as gagné %pts%pts",array(
+            $json2 = $this->_handleTableauTimeline($mission, utf8_decode("Tu as réussi la mission %mission%"), utf8_decode("et tu as gagné %pts%pts"),array(
                 'mission' =>'nom',
                 'pts' => 'nb_pts'
             ), 'mission');
             
-            $json3 = $this->_handleTableauTimeline($badges, "Tu as gagné le badge %badge%", "", array('badge'=>'nom'), 'badge');
+            $json3 = $this->_handleTableauTimeline($badges, utf8_decode("Tu as gagné le badge %badge%"), "", array('badge'=>'nom'), 'badge');
             
             
             //merge all array
