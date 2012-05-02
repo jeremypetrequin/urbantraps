@@ -18,6 +18,7 @@ include_once(dirname(__FILE__).'/tweet.php');
 include_once(dirname(__FILE__).'/image.php');
 include_once(dirname(__FILE__).'/maths.php');
 include_once(dirname(__FILE__).'/string.php');
+include_once(dirname(__FILE__).'/array_sorter.php');
 class Framework {
     private static $Framework = null;
     //si on veut alimenter le contenu du debugueur avec des données spéciales
