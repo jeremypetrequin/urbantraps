@@ -85,7 +85,7 @@ class model_user extends modelDefault {
         $statutModel = new model_statut();
         $statuts = $statutModel->getStatutUser($tab[0]['id']);
         $statuts = is_array($statuts) ? $statuts : array();
-        $tab[0]['statut'] = count($statuts) > 0 ? $statuts[0] : array();
+        $tab[0]['statuts'] = count($statuts) > 0 ? $statuts : array();
         
         return $tab;
     }
