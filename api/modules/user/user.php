@@ -73,7 +73,7 @@ class user extends pageDefault {
     }
 
     /**
-     * encode all value in a array in utf8 (/!\ non recursive!, juste first level)
+     * encode all value in a array in utf8 (/!\ non recursive!, just first level)
      * @param array $array 
      * @return array
      */
