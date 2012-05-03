@@ -28,11 +28,17 @@ class user extends pageDefault {
             $user_id = $_REQUEST['user_id'];
             
             //get data
+            $joueurs = $this->_model->get($user_id);
             $badges = $this->_model->getBadgeUser($user_id);
             $ajouer = $this->_model->getAJouerJoueur($user_id);
             $mission = $this->_model->getMissionJoueur($user_id);
             
             //handle data
+            
+            $joueur = $joueurs[0];
+            $joueur['date'] = $joueur['created'];
+            $json0 = $this->_handleTableauTimeline(array($joueur), utf8_decode("Bienvenue BeyBey"),"", array(), 'inscription');
+            
             $json1 = $this->_handleTableauTimeline($ajouer, utf8_decode("Tu as jouer à %game%"), utf8_decode("sur un panneau %panneau% à %ville%, et tu as marqué %pts%pts"), array(
                 'panneau' =>'panneau',
                 'game' =>'jeu',
@@ -49,7 +55,7 @@ class user extends pageDefault {
             
             
             //merge all array
-            $json = array_merge(array_merge($json1, $json2), $json3);
+            $json = array_merge(array_merge(array_merge($json1, $json0), $json2), $json3);
             
             //sort the big array by date
             $sorter = new array_sorter($json, 'date', false);
@@ -58,7 +64,7 @@ class user extends pageDefault {
             
             //encode the array for json
             $json = $this->_utf8_encoding_array($json);
-            //echo '<pre>';
+          //  echo '<pre>';
             //print_r($json);
             //output the json
             die(json_encode($json));

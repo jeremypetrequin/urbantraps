@@ -42,7 +42,13 @@ class model_user extends modelDefault {
             LEFT JOIN Mission ON MissionJoueur.Mission_id = Mission.id
             WHERE Joueur_id = ".$user_id;
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
-        return is_array($tab) ? $tab : array();;
+        $tab = is_array($tab) ? $tab : array();
+        $return = array();
+        for($i = 0; $i<count($tab); $i++){
+            $return[$i] = $tab[$i];
+            $return[$i]['date'] = $tab[$i]['start'];
+        }
+        return $return;
     }
     
     /**
