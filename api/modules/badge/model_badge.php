@@ -12,7 +12,7 @@ class model_badge extends modelDefault {
         parent::__construct();
         parent::setTable('Badge');
         parent::setId('id');
-    } 
+    }
 }
 
 ?>
