@@ -12,8 +12,8 @@
  */
 
 class modelDefault {
-    private  $_table;
-    private  $_id;
+    protected $_table;
+    protected  $_id;
     
     public function __construct() {
         $this->db = Framework::load()->getBDD();
@@ -28,17 +28,17 @@ class modelDefault {
     
     public function getItems() {
         $q = 'SELECT * FROM '.$this->_table;
-	return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function get($id) {
         $q = 'SELECT * FROM '.$this->_table.' WHERE '.$this->_id.'='.$id;
-	return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public function delete($id) {
         $q = 'DELETE FROM `'.$this->_table.'` WHERE `'.$this->_table.'`.`'.$this->_id.'` = '.$id;
-	$this->db->exec($q);
+        $this->db->exec($q);
     }
     
     public function insert($tab) {
