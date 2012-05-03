@@ -1,8 +1,13 @@
 <?php
 
-
+include_once('typesOfMenu.php');
 
 $current_user = wp_get_current_user();
+
+ob_start();
+bloginfo('url');
+define('URL_BLOG', ob_get_contents());
+ob_end_clean();
 
 /*
 echo '<pre>';

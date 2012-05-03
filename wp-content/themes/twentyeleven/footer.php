@@ -7,7 +7,7 @@
 <footer role="contentinfo" class="max">
     <nav>
         <ul class="nav">
-            <?php $id = 16; $page = get_page($id);?>
+            <!--<?php $id = 16; $page = get_page($id);?>
 
             <li class="link_1 <?php if($post->ID == 16) echo 'selected' ; ?>"><a href="<?php echo get_permalink(16); ?>" title="<?php echo stripslashes($page->post_title); ?>">
                 
@@ -36,11 +36,12 @@
                     sources / entre nous
                 </a>
             </li>
-            <?php } } ?>
+            <?php } } ?>-->
     </nav>
         
     </footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script> 
     var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-28260908-1']);
@@ -54,8 +55,12 @@
   
     window.jQuery || document.write('<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.6.2.min.js"><\/script>')
 </script>
+
 <script src="<?php echo get_template_directory_uri(); ?>/js/framework.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/gmap/gmap.class.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/script_map.js"></script>
+
 
 <?php wp_footer(); ?>
 
@@ -65,6 +70,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
     <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
-
+    
 </body>
 </html>

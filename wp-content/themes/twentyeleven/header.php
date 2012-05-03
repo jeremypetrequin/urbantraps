@@ -69,14 +69,23 @@
 ?>
     <link href="<?php echo get_template_directory_uri(); ?>/images/favico.png" type="image/png" rel="icon">
     <link href="<?php echo get_template_directory_uri(); ?>/images/favico.png" type="image/x-icon" rel="shortcut icon">
+    
+    <script>
+        window.CONF = {
+           url_api : '<?php echo get_permalink(414); ?>'
+            
+        };
+    </script>
 </head>
 
 <body <?php body_class(); ?>>
-    <div id="formulaire_connexion" class="max">
-        <?php echo login_with_ajax(); ?>
+<div id="gmap">
     </div>
+    <!-- <div id="formulaire_connexion" class="max">
+        <?php echo login_with_ajax(); ?>
+    </div> -->
 <div id="wrapper" class="hfeed">
-	<header role="banner">
+	<!--<header role="banner">
                 <div id="banner">
                     <div id="connect_form">
                         
@@ -195,7 +204,8 @@
                                 ?>
                             </ul>
                         </nav>
-	</header>
+                        
+	</header> -->
 
 
 	<div id="main">
