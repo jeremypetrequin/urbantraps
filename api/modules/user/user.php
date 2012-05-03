@@ -8,6 +8,8 @@
 
 include_once(dirname(__FILE__).'/model_user.php');
 include_once(ABSPATH.'/api/modules/ville/ville.php');
+include_once(ABSPATH.'/api/modules/badge/badge.php');
+include_once(ABSPATH.'/api/modules/statut/statut.php');
 
 class user extends pageDefault {
     private $_model = null;
@@ -109,6 +111,9 @@ class user extends pageDefault {
         return $return;
     }
     
+    /**
+     * connect user
+     */
     protected function _connect() {
         
         if(isset($_REQUEST['fbk_id'])) {
@@ -151,7 +156,7 @@ class user extends pageDefault {
                     
                     //response
                     $this->_model->setId('fbk_id');
-                    $users = $this->_model->get($_REQUEST['fbk_id']);
+                    $users = $this->_model->getUser($_REQUEST['fbk_id']);
                     $users = is_array($users) ? $users  : array();
                     $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
                     
@@ -177,6 +182,9 @@ class user extends pageDefault {
                     unset ($resultVille['nom']);
                     
                     $return = array_merge($resultVille, $return);
+                   /* echo '<pre>';
+                    print_r($return);
+                    echo '</pre>';*/
                     die(json_encode($return));
                 } else {
                     die(json_encode(array('error' => 'Pas trouvé la ville')));
