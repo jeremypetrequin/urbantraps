@@ -91,7 +91,8 @@ class model_user extends modelDefault {
         $statutModel = new model_statut();
         $statuts = $statutModel->getStatutUser($tab[0]['id']);
         $statuts = is_array($statuts) ? $statuts : array();
-        $tab[0]['statuts'] = count($statuts) > 0 ? $statuts : array();
+        $tab[0]['statuts_joueurs'] = count($statuts) > 0 ? $statuts : array();
+        $tab[0]['statuts'] = $statutModel->getItems();
         
         return $tab;
     }

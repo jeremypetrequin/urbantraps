@@ -68,7 +68,6 @@ class user extends pageDefault {
             //print_r($json);
             //output the json
             die(json_encode($json));
-            
         }
     }
 
