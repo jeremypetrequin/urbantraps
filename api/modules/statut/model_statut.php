@@ -19,6 +19,11 @@ class model_statut extends modelDefault {
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         return is_array($tab) ? $tab : array();
     }
+    
+     public function getItems() {
+        $q = 'SELECT * FROM '.$this->_table.' ORDER BY nb_points';
+        return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 ?>
