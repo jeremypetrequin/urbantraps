@@ -7,7 +7,7 @@
         'child_of'     => 404,
         'exclude'      => '404',
         'include'      => '',
-        'title_li'     => __('Pages'),
+        'title_li'     => __(''),
         'echo'         => 1,
         'authors'      => '',
         'sort_column'  => 'menu_order, post_title',
@@ -16,9 +16,19 @@
         'walker'       => new SimpleIndentMenuWalker,
         'post_status'  => 'publish' 
 ); ?>
-<?php wp_list_pages( $args ); ?> 
 
-
+<div id="navigation">
+    <div id="logo">
+        Logo
+        <!-- <img src="" alt=""/> -->
+    </div>
+    <div id="menu">
+        <ul>
+            <?php wp_list_pages( $args ); ?> 
+        </ul>
+        <div class="clear"></div>
+    </div> <?php //menu ?>
+</div> <?php //navigation ?>
 
 
 <?php get_footer(); ?>

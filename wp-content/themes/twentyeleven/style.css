@@ -13,3 +13,52 @@ body{
     position: relative;
     z-index: 5;
 }
+
+#main{
+}
+
+#navigation{
+    width: 100%;
+    height: 50px;
+    background: #fff;
+}
+
+#logo{
+    background: #0f0;
+    width: 200px;
+    height: 30px;
+    margin: auto;
+}
+
+#menu{
+    background: #f00;
+}
+
+#navigation ul{
+    margin: 0px auto;
+    padding: 0px;
+    width: 366px;
+}
+
+#navigation li{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    display:block;
+    border: 1px solid black;
+    background: #00f;
+}
+
+.page_item a{
+    text-align: center;    
+    display:block;
+    width: 120px;
+    height: 20px;
+    padding: 10px 0;
+}
+
+.clear{
+    clear: both;
+}
+

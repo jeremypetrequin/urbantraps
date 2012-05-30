@@ -23,6 +23,7 @@
       * @params callBack : function called at the end ot the animation
       */
      gm.Map.prototype.panTo = function(to, time, callBack) {
+         
                 if(!to) return;
                 time = time || 1000;
                 callBack = callBack || function() {};
@@ -32,7 +33,7 @@
                 eq = {lat : Math.linearEquation(0, time, from.lat(), to.lat()), lng : Math.linearEquation(0, time, from.lng(), to.lng())},
                 interval = setInterval(function() {
                     i+=1000/25;
-
+                    
                     that.setCenter(new gm.LatLng(
                         eq.lat(i), 
                         eq.lng(i)
@@ -105,7 +106,7 @@
 function drawWay(from, to, speedPan){
         
           //console.log(from);
-          console.log(speedPan);
+          console.log('SPEED PAN : '+speedPan);
             googlemap.calculItineraire(from.perso_fields.latitude+', '+from.perso_fields.longitude, to.perso_fields.latitude+', '+to.perso_fields.longitude, googlemap, function(data) {
                         //console.log(data);
                       
@@ -151,7 +152,7 @@ function drawWay(from, to, speedPan){
                         
                         var timer;
                         timer = setInterval(function() {
-                            //console.log("setInterval");
+                            console.log("setInterval");
                             var toto = Math.floor(t), path = [];
                            for(var i = 0; i <=toto; i++) {
                                if(toto <  tab.length) {
@@ -184,6 +185,7 @@ function drawWay(from, to, speedPan){
                                clearInterval(timer); 
                                timer = null;
                            }*/
+                            //console.log('INTERVAL');
                        }, interval);
                        
                        //console.log(equation);
