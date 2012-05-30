@@ -33,19 +33,37 @@ class jeu extends pageDefault {
        $this->_model->setTable('DetailScore');
        $joueurDetailScore = $this->_model->get($_REQUEST['joueur']);
        
-      /* CREATE TABLE IF NOT EXISTS `DetailScore` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_joueur` int(11) NOT NULL,
-  `score_jeu_1` int(11) NOT NULL,
-  `score_jeu_2` int(11) NOT NULL,
-  `score_jeu_3` int(11) NOT NULL,
-  `score_jeu_4` int(11) NOT NULL,
-  `score_jeu_5` int(11) NOT NULL,
-  `nb_badges` int(11) NOT NULL,
-  `nb_scans` int(11) NOT NULL,
-  `nb_missions` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; */
+       if(!is_array($joueurDetailScore) || count($joueurDetailScore) == 0) {
+           $this->_model->setId('id');
+           $joueurDetailScore = array(
+                'id_joueur' => $_REQUEST['joueur'],
+               'score_jeu_1' => 0,
+               'score_jeu_2' => 0,
+               'score_jeu_3' => 0,
+               'score_jeu_4' => 0,
+               'score_jeu_5' => 0,
+               'nb_scans' => 0,
+               'nb_badges' => 0,
+               'nb_missions' => 0
+            );
+           
+           $user_id_score = $this->_model->insert($joueurDetailScore);
+           $joueurDetailScore['id'] = $user_id_score;
+            
+       } else {
+           $joueurDetailScore = $joueurDetailScore[0];
+       }
+       
+       $fieldJeu = 'score_jeu_'.$_REQUEST['jeu_id'];
+       
+       if($joueurDetailScore[$fieldJeu] < $_REQUEST['score']) {
+           
+           $this->_model->setId('id');
+           $joueurDetailScore[$fieldJeu] = $_REQUEST['score'];
+           $this->_model->insert($joueurDetailScore);
+       }
+       
+       
     } 
     
     protected function _getClassement() {

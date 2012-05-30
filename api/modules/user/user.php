@@ -135,7 +135,6 @@ class user extends pageDefault {
                     $user = $this->_model->get($_REQUEST['fbk_id']);
                     $user = is_array($user) ? $user  : array();
                     $this->_model->setId('id');
-
                     
                     if(count($user) == 0) { //insert
                         $id = $this->_model->insert(array(
@@ -157,13 +156,56 @@ class user extends pageDefault {
                             'data' => $user[0]['data'],
                             'avatar' => $_REQUEST['avatar']
                         ));
+                        
+                        
                     }
+                    
+                    $modelScore = new modelDefault();
+                    $modelScore->setId('id_joueur');
+                    $modelScore->setTable("DetailScore");
+                    $scoreDetail = $modelScore->get($id);
+                    
+                    if(!is_array($scoreDetail) || count($scoreDetail) == 0) {
+                        $modelScore->setId('id');
+                        $scoreDetail = array(
+                                'id_joueur' => $id,
+                                'score_jeu_1' => 0,
+                                'score_jeu_2' => 0,
+                                'score_jeu_3' => 0,
+                                'score_jeu_4' => 0,
+                                'score_jeu_5' => 0,
+                                'nb_scans' => 0,
+                                'nb_badges' => 0,
+                                'nb_missions' => 0
+                            );
+
+                        $user_id_score = $modelScore->insert($scoreDetail);
+                        $scoreDetail['id'] = $user_id_score;
+
+                    } else {
+                        $scoreDetail = $scoreDetail[0];
+                    }
+                    
+                    
+                    
+                    
                     
                     //response
                     $this->_model->setId('fbk_id');
                     $users = $this->_model->getUser($_REQUEST['fbk_id']);
                     $users = is_array($users) ? $users  : array();
                     $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
+                    
+                    $return['score'] = 0;
+                    $return['score'] +=$scoreDetail['score_jeu_1'];
+                    $return['score'] +=$scoreDetail['score_jeu_2'];
+                    $return['score'] +=$scoreDetail['score_jeu_3'];
+                    $return['score'] +=$scoreDetail['score_jeu_4'];
+                    $return['score'] +=$scoreDetail['score_jeu_5'];
+                    
+                    $return['score'] +=$scoreDetail['nb_badges'] * 20;
+                    $return['score'] +=$scoreDetail['nb_scans'] * 5;
+                    $return['score'] +=$scoreDetail['nb_missions'] * 50;
                     
                     $inCity = $this->_model->getInCity($id, $resultVille['id']);
 
