@@ -74,6 +74,8 @@ window.Gmap = function(elmt, options, style, callBack) {
      * autoGeoloc : boolean
      * that
      * cb => callback appelÃ© Ã  chaque fois
+     * 
+     * DEPRECATED
      */
     this.calculItineraire = function(divRecherche, formRecherche, fromRecherche, toRecherche, btnEffacer, autoGeoloc, that, cb) {
         that = that || this;
@@ -120,32 +122,31 @@ window.Gmap = function(elmt, options, style, callBack) {
     /*
      * Le mecanisme de calcul de l'itineraire
      */
-    this.triggerCalculItineraire = function(divRecherche, from, to, that, cb){
+    this.calculItineraire = function(from, to, that, cb){
     	that = that || this;
     	var  directionDisplayContainer=null;
 
     	//Instanciation
-    	directionDisplayContainer = document.getElementById(divRecherche);
-        $(directionDisplayContainer).html('');
-    	that.directionsDisplay.setPanel(directionDisplayContainer);
-        that.directionsDisplay.setMap(that.map);
+    	//directionDisplayContainer = document.getElementById(divRecherche);
+        //$(directionDisplayContainer).html('');
+    	//that.directionsDisplay.setPanel(directionDisplayContainer);
+        //that.directionsDisplay.setMap(that.map);
 
-        $(directionDisplayContainer).html('<img id="wpajaxloadingsmall" src="http://'+window.location.hostname+'/wp-content/noewp/plugins/analytics360/images/working-small.gif" alt="Chargement" />');
+        //$(directionDisplayContainer).html('<img id="wpajaxloadingsmall" src="http://'+window.location.hostname+'/wp-content/noewp/plugins/analytics360/images/working-small.gif" alt="Chargement" />');
 
         var requeteItineraire = {
             origin: from,
             destination: to,
             region: 'fr',
-            travelMode: _gm.DirectionsTravelMode.DRIVING
+            travelMode: _gm.DirectionsTravelMode.WALKING
          };
 
         that.directionsService.route(requeteItineraire, function(response, status) {
-            $('#wpajaxloadingsmall').remove();
             if (status == _gm.DirectionsStatus.OK) {
-            	that.directionsDisplay.setDirections(response);
-                if(cb) cb(true);
+            	//that.directionsDisplay.setDirections(response);
+                if(cb) cb(response);
             } else {
-                $(directionDisplayContainer).html('<span class="itineraireError">Itin&eacute;raire non trouv&eacute;. Merci de modifier votre recherche et de recommencer.</span>');
+             
                 if(cb) cb(false);
             }
         });

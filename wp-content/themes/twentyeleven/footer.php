@@ -54,6 +54,7 @@
       })();
   
     window.jQuery || document.write('<script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.6.2.min.js"><\/script>')
+    
 </script>
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/framework.js"></script>
