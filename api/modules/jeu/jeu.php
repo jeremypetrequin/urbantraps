@@ -48,6 +48,10 @@ class jeu extends pageDefault {
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; */
     } 
     
+    protected function _getClassement() {
+        $this->_model = new model_jeu();
+        
+    }
     
    
 

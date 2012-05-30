@@ -12,6 +12,10 @@ class model_jeu extends modelDefault {
         parent::setTable('AJouer');
         parent::setId('id');
     } 
+    
+    public function getClassement() {
+        $this->getItems();
+    }
 }
 
 ?>
