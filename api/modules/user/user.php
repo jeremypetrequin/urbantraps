@@ -6,6 +6,7 @@
  * @author : Badger
  */
 
+
 include_once(dirname(__FILE__).'/model_user.php');
 include_once(ABSPATH.'/api/modules/ville/ville.php');
 include_once(ABSPATH.'/api/modules/badge/badge.php');
@@ -13,7 +14,7 @@ include_once(ABSPATH.'/api/modules/statut/statut.php');
 
 class user extends pageDefault {
     private $_model = null;
-    
+      
     protected function _get() {
 
     } 
@@ -116,11 +117,52 @@ class user extends pageDefault {
         return $return;
     }
     
+    public function getScore($user_id) {
+        $score = 0;
+        $modelScore = new modelDefault();
+        $modelScore->setId('id_joueur');
+        $modelScore->setTable("DetailScore");
+        $scoreDetail = $modelScore->get($user_id);
+
+        if(!is_array($scoreDetail) || count($scoreDetail) == 0) {
+            $modelScore->setId('id');
+            $scoreDetail = array(
+                    'id_joueur' => $user_id,
+                    'score_jeu_1' => 0,
+                    'score_jeu_2' => 0,
+                    'score_jeu_3' => 0,
+                    'score_jeu_4' => 0,
+                    'score_jeu_5' => 0,
+                    'nb_scans' => 0,
+                    'nb_badges' => 0,
+                    'nb_missions' => 0
+                );
+
+            $user_id_score = $modelScore->insert($scoreDetail);
+            $scoreDetail['id'] = $user_id_score;
+
+        } else {
+            $scoreDetail = $scoreDetail[0];
+        }
+            
+        $score +=$scoreDetail['score_jeu_1'];
+        $score +=$scoreDetail['score_jeu_2'];
+        $score +=$scoreDetail['score_jeu_3'];
+        $score +=$scoreDetail['score_jeu_4'];
+        $score +=$scoreDetail['score_jeu_5'];
+
+        $score +=$scoreDetail['nb_badges'] * 20;
+        $score +=$scoreDetail['nb_scans'] * 5;
+        $score +=$scoreDetail['nb_missions'] * 50;
+                    
+        return $score;
+    }
     /**
      * connect user
      */
     protected function _connect() {
         
+
         if(isset($_REQUEST['fbk_id'])) {
             $this->_model = new model_user();
             
@@ -160,52 +202,14 @@ class user extends pageDefault {
                         
                     }
                     
-                    $modelScore = new modelDefault();
-                    $modelScore->setId('id_joueur');
-                    $modelScore->setTable("DetailScore");
-                    $scoreDetail = $modelScore->get($id);
-                    
-                    if(!is_array($scoreDetail) || count($scoreDetail) == 0) {
-                        $modelScore->setId('id');
-                        $scoreDetail = array(
-                                'id_joueur' => $id,
-                                'score_jeu_1' => 0,
-                                'score_jeu_2' => 0,
-                                'score_jeu_3' => 0,
-                                'score_jeu_4' => 0,
-                                'score_jeu_5' => 0,
-                                'nb_scans' => 0,
-                                'nb_badges' => 0,
-                                'nb_missions' => 0
-                            );
-
-                        $user_id_score = $modelScore->insert($scoreDetail);
-                        $scoreDetail['id'] = $user_id_score;
-
-                    } else {
-                        $scoreDetail = $scoreDetail[0];
-                    }
-                    
-                    
-                    
-                    
-                    
                     //response
                     $this->_model->setId('fbk_id');
                     $users = $this->_model->getUser($_REQUEST['fbk_id']);
                     $users = is_array($users) ? $users  : array();
                     $return = (count($users) > 0) ? $users[0] : array('error' => "probleme lors de l'enregistrement");
                     
-                    $return['score'] = 0;
-                    $return['score'] +=$scoreDetail['score_jeu_1'];
-                    $return['score'] +=$scoreDetail['score_jeu_2'];
-                    $return['score'] +=$scoreDetail['score_jeu_3'];
-                    $return['score'] +=$scoreDetail['score_jeu_4'];
-                    $return['score'] +=$scoreDetail['score_jeu_5'];
+                    $return['score'] = $this->getScore($id);
                     
-                    $return['score'] +=$scoreDetail['nb_badges'] * 20;
-                    $return['score'] +=$scoreDetail['nb_scans'] * 5;
-                    $return['score'] +=$scoreDetail['nb_missions'] * 50;
                     
                     $inCity = $this->_model->getInCity($id, $resultVille['id']);
 

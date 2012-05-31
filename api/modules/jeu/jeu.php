@@ -9,6 +9,8 @@
  */
 
 include_once(dirname(__FILE__).'/model_jeu.php');
+include_once(ABSPATH.'/api/modules/user/user.php');
+
 
 class jeu extends pageDefault {
     private $_model = null;
@@ -61,8 +63,11 @@ class jeu extends pageDefault {
            $this->_model->setId('id');
            $joueurDetailScore[$fieldJeu] = $_REQUEST['score'];
            $this->_model->insert($joueurDetailScore);
-       }
+       } 
        
+       $userController = new user();
+
+       echo json_encode(array('score' =>$userController->getScore($_REQUEST['joueur'])));
        
     } 
     

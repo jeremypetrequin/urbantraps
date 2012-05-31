@@ -28,7 +28,11 @@ class pageDefault {
         
         $this->classes[] = $this->_task;
         $fct = '_'.$this->_task;
-        $this->$fct();  
+        if(method_exists($this, $fct)) {
+            $this->$fct();  
+        } else {
+          //  echo 'methode not exist';
+        }
     }
     
     public function setTitle($content, $concat = true) {
