@@ -11,7 +11,7 @@
  */
 
 include_once(dirname(__FILE__).'/model_panneau.php');
-
+include_once(ABSPATH.'/api/modules/scan/scan.php');
 class panneau extends pageDefault {
     private $_model = null;
     
@@ -90,7 +90,7 @@ class panneau extends pageDefault {
         $this->_model->setTable("PanneauVille");
         $this->_model->setId("id");
         
-        $this->_model->insert(array(
+        return $this->_model->insert(array(
             'Panneau_id' => $_REQUEST['panneau_id'],
             'Ville_id' => $_REQUEST['ville_id'],
             'lat' => $_REQUEST['lat'],
@@ -99,6 +99,63 @@ class panneau extends pageDefault {
         ));
     }
     
+    /**
+     * cherche un panneau dans la base, le crée sinon
+     * insert le scan pour le joueur
+     * retourne les infos utiles sur ce panneaux
+     * url to call : http://localhost:8888/urbantraps/api//?p=panneau&task=scan&lng=5.915756&lat=45.692055&user=2&ville_id=12&panneau_id=6 
+     */
+    protected function _scan() {        
+        $this->_model = new model_panneau();
+        $this->_model->setTable("PanneauVille");
+        $this->_model->setId("id");
+        
+        $tab = $this->_model->getPanneauNear($_REQUEST['lat'], $_REQUEST['lng'], $_REQUEST['panneau_id']);
+        
+        if(count($tab) == 0) {
+            $panneau_ville_id = $this->_addPanneauVille();
+        } else {
+            $panneau_ville_id = $tab[0]['id'];
+        }
+        
+        unset($_POST['task']);
+        unset($_GET['task']);
+        unset($_REQUEST['task']);
+        
+        $scan = new scan();
+        $scan->insertScan(array(
+            'joueur_id' =>$_REQUEST['user'],
+            'panneau_ville_id' => $panneau_ville_id,
+            'ville_id' => $_REQUEST['ville_id'],
+        ));
+        
+        $datas = $this->_model->getPanneauVilleDetail($panneau_ville_id);
+        $json1 = array();
+        //build the json for the response, fucking array!
+        foreach ($datas as $d) {
+            $json1[$d['panneau_ville_id']]['panneau_nom'] = utf8_encode($d['panneau_nom']);
+            $json1[$d['panneau_ville_id']]['panneau_img'] = $d['panneau_img'];
+            $json1[$d['panneau_ville_id']]['panneau_id'] = $d['panneau_id'];
+            $json1[$d['panneau_ville_id']]['lat'] = $d['lat'];
+            $json1[$d['panneau_ville_id']]['lng'] = $d['lng'];
+            $json1[$d['panneau_ville_id']]['panneau_check'] = $d['panneau_check'];
+            $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['jeu_nom'] = $d['jeu_nom'];
+            if(!is_array($json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']) || $d['score_jeu'] > $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']['score_jeu']) {
+                $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader'] = array(
+                  "joueur_id" => $d['joueur_id'],  
+                  "joueur_nom" => $d['joueur_nom'],  
+                  "score_jeu" => $d['score_jeu'],  
+                  "joueur_avatar" => $d['joueur_avatar']  
+                );
+            }
+        }
+        
+        die(json_encode($json1));
+        echo '<pre>';
+        print_r($json1);
+        echo '</pre>';
+        
+    }
    
 
 }

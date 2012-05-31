@@ -27,6 +27,12 @@ class scan extends pageDefault {
               'Date' => date('Y/m/d H:i:s')
         ));
     }
+    
+    public function insertScan($tab) {
+        
+        $this->_model = new model_scan();
+        $this->_model->insertScanForUser($tab['ville_id'], $tab['panneau_ville_id'], $tab['joueur_id']);
+    }
 
 
 }
