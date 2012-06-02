@@ -163,7 +163,9 @@ class panneau extends pageDefault {
                     'jeu_nom'=> $jeu['nom'],
                     'nb_scan'=> $jeu['nb_scan'],
                     'nb_point'=> $jeu['rarete'],
-                    'leader' => null
+                    'leader' => array(
+                        'score_jeu' => '0'
+                    )
                 );
             }
         }
