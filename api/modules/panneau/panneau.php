@@ -51,8 +51,9 @@ class panneau extends pageDefault {
         $data = $this->_model->getPanneauVille($_REQUEST['ville_id']);
         //$jeuByPanneau =  $this->_getJeuPanneau();
         
-        //echo '<pre>';
+     //   echo '<pre>';
         //print_r($data);
+        //die();
         $json1 = array();
         //build the json for the response, fucking array!
         foreach ($data as $d) {
@@ -140,6 +141,8 @@ class panneau extends pageDefault {
             $json1[$d['panneau_ville_id']]['lng'] = $d['lng'];
             $json1[$d['panneau_ville_id']]['panneau_check'] = $d['panneau_check'];
             $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['jeu_nom'] = $d['jeu_nom'];
+            $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['nb_scan'] = $d['nb_scan'];
+            $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['nb_point'] = $d['nb_point'];
             if(!is_array($json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']) || $d['score_jeu'] > $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']['score_jeu']) {
                 $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader'] = array(
                   "joueur_id" => $d['joueur_id'],  
@@ -150,6 +153,20 @@ class panneau extends pageDefault {
             }
         }
         
+        $this->_model->setId('id');
+        $this->_model->setTable('Jeu');
+        $jeux = $this->_model->getItems();
+        
+        foreach ($jeux as $jeu) {
+            if(!isset($json1[$panneau_ville_id]['jeux'][$jeu['id']]) || empty($json1[$panneau_ville_id]['jeux'][$jeu['id']])) {
+                $json1[$panneau_ville_id]['jeux'][$jeu['id']] = array(
+                    'jeu_nom'=> $jeu['nom'],
+                    'nb_scan'=> $jeu['nb_scan'],
+                    'nb_point'=> $jeu['rarete'],
+                    'leader' => null
+                );
+            }
+        }
         die(json_encode($json1));
         echo '<pre>';
         print_r($json1);

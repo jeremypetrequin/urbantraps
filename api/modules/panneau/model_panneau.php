@@ -94,6 +94,7 @@ class model_panneau extends modelDefault {
         return is_array($tab) ? $tab : array();
     }
     
+    
     public function getPanneauVilleDetail($panneau_ville_id) {
         $q = "  SELECT 
                     Panneau.nom as panneau_nom,
@@ -108,6 +109,8 @@ class model_panneau extends modelDefault {
                     Joueur.nom as joueur_nom,
                     Joueur.avatar as joueur_avatar,
 
+                    Jeu.nb_scan as nb_scan,
+                    Jeu.rarete as nb_point,
                     Jeu.nom as jeu_nom,
                     Jeu.id as jeu_id,
 

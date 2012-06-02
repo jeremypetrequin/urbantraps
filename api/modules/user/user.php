@@ -233,6 +233,23 @@ class user extends pageDefault {
                     unset ($resultVille['nom']);
                     
                     $return = array_merge($resultVille, $return);
+                    
+                    $this->_model->setId('id');
+                    $this->_model->setTable('Jeu');
+                    $jeux = $this->_model->getItems();
+                    
+                    $return['jeux'] = array();
+                    $i = 0;
+                    foreach ($jeux as $jeu) {
+                        $return['jeux'][$i] = array(
+                            'nb_point' =>$jeu['rarete'], 
+                            'nb_scan' =>$jeu['nb_scan'],
+                            'nom' => $jeu['nom'], 
+                            'id' =>$jeu['id']
+                        );
+                        $i++;
+                    }
+                     
                    /* echo '<pre>';
                     print_r($return);
                     echo '</pre>';*/
