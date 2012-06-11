@@ -66,7 +66,14 @@ class jeu extends pageDefault {
        } 
        
        $userController = new user();
-
+       $score = $userController->getScore($_REQUEST['joueur']);
+       $this->_model->setId('id');
+       $this->_model->setTable('Joueur');
+       $this->_model->insert(array(
+           'id'=> $_REQUEST['joueur'],
+           'score' => $score
+       ));
+       
        echo json_encode(array('score' =>$userController->getScore($_REQUEST['joueur'])));
        
     } 

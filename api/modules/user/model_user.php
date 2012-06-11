@@ -44,7 +44,7 @@ class model_user extends modelDefault {
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         $tab = is_array($tab) ? $tab : array();
         $return = array();
-        for($i = 0; $i<count($tab); $i++){
+        for($i = 0; $i<count($tab); $i++) {
             $return[$i] = $tab[$i];
             $return[$i]['date'] = $tab[$i]['start'];
         }
@@ -116,6 +116,7 @@ class model_user extends modelDefault {
         $q = "SELECT 
             Ville.nom as ville,
             Jeu.nom as jeu,
+            Jeu.id as jeu_id,
             PanneauVille.lat as latitude,
             PanneauVille.lng as longitude,
             AJouer.date as date,
