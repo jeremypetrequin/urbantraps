@@ -47,7 +47,7 @@ class user extends pageDefault {
                 'pts' =>'score'
             ), 'jouer');
             
-            $json2 = $this->_handleTableauTimeline($mission, utf8_decode("Tu as réussi la mission \"%mission%\""), utf8_decode("Ca t'a rapporté %pts%pts"),array(
+            $json2 = $this->_handleTableauTimeline($mission, utf8_decode("Tu as réussi la mission \"%mission%\""), utf8_decode("Ca t'a rapporté     %pts%pts"),array(
                 'mission' =>'nom',
                 'pts' => 'nb_pts'
             ), 'mission');
