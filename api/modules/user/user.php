@@ -38,21 +38,21 @@ class user extends pageDefault {
             
             $joueur = $joueurs[0];
             $joueur['date'] = $joueur['created'];
-            $json0 = $this->_handleTableauTimeline(array($joueur), utf8_decode("Bienvenue BeyBey"),"", array(), 'inscription');
+            $json0 = $this->_handleTableauTimeline(array($joueur), utf8_decode("Bienvenue!"),"", array(), 'inscription');
             
-            $json1 = $this->_handleTableauTimeline($ajouer, utf8_decode("Tu as jouer à %game%"), utf8_decode("sur un panneau %panneau% à %ville%, et tu as marqué %pts%pts"), array(
+            $json1 = $this->_handleTableauTimeline($ajouer, utf8_decode("Tu as joué à \"%game%\""), utf8_decode("panneau %panneau%, %ville%"), array(
                 'panneau' =>'panneau',
                 'game' =>'jeu',
                 'ville' =>'ville',
                 'pts' =>'score'
             ), 'jouer');
             
-            $json2 = $this->_handleTableauTimeline($mission, utf8_decode("Tu as réussi la mission %mission%"), utf8_decode("et tu as gagné %pts%pts"),array(
+            $json2 = $this->_handleTableauTimeline($mission, utf8_decode("Tu as réussi la mission \"%mission%\""), utf8_decode("Ca t'a rapporté %pts%pts"),array(
                 'mission' =>'nom',
                 'pts' => 'nb_pts'
             ), 'mission');
             
-            $json3 = $this->_handleTableauTimeline($badges, utf8_decode("Tu as gagné le badge %badge%"), "", array('badge'=>'nom'), 'badge');
+            $json3 = $this->_handleTableauTimeline($badges, utf8_decode("Tu as gagné le badge \"%badge%\""), "", array('badge'=>'nom'), 'badge');
             
             
             //merge all array
@@ -198,8 +198,6 @@ class user extends pageDefault {
                             'data' => $user[0]['data'],
                             'avatar' => $_REQUEST['avatar']
                         ));
-                        
-                        
                     }
                     
                     //response
