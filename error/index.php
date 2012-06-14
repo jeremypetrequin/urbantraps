@@ -98,7 +98,7 @@ include("html_beginning.php");
                                         <th width="10%" class="col1"><b>Ville</b></th>
                                         <th width="10%" class="col1"><b>User</b></th>
 		<th width="20%" class="col1"><b>Derni&egrave;re</b></th>
-		<th width="10%" class="col2"><b>Compteur</b></th>
+		<th width="10%" class="col2"><b>Nombre</b></th>
 	</tr>
 
 	<?php 
@@ -115,8 +115,8 @@ include("html_beginning.php");
 					<a href="error.php?e=<?php echo $row['error_id']; ?>"><?php echo $row['error_msg']; ?></a>
 					
 				</td>
-                                                                                <td align="center" class="col1"><?php echo $row['error_file']; ?></td>
-                                                                                <td align="center" class="col1"><?php echo $row['error_line']; ?></td>
+                                                                                <td align="center" class="col1"><?php echo ucfirst($row['ville']); ?></td>
+                                                                                <td align="center" class="col1"><?php echo $row['joueur']; ?></td>
 				<td align="center" class="col1"><?php echo $row['error_date']; ?></td>
 				<td align="center" class="col2"><?php echo $row['error_count']; ?></td>
 			</tr>

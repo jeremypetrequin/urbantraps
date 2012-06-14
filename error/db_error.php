@@ -83,10 +83,17 @@ function dbSelectAllError($con, $data = "") {
 		e.error_msg, e.error_line,
 		e.error_date, e.error_count,
 		p.project_domain, p.project_name,
-		e.status_id
-	FROM error as e, error_project as p,
+		e.status_id,
+                                        Ville.nom as ville,
+                                        Joueur.nom as joueur
+	FROM 
+        error as e 
+        LEFT JOIN Ville on  e.error_file = Ville.id
+        LEFT JOIN Joueur on e.error_line = Joueur.id,
+error_project as p,
 		error_dev as d, error_type as t,
 		error_status as s
+                    
 	WHERE
 	e.project_id = p.project_id
 	AND e.dev_id = d.dev_id
@@ -123,6 +130,7 @@ function dbSelectAllError($con, $data = "") {
   		$i++;
   	}
 
+//        echo $query;
   	return $return;
 }
 

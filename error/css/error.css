@@ -1,9 +1,61 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 html, body { 
 	margin: 0; 
 	padding: 0;
 	font-family: Arial, sans-serif; 
 }
 
+b {
+    font-weight: bold;
+}
 /* Clear */
 .visualClear {
 	clear: both;
@@ -12,25 +64,31 @@ html, body {
 
 /* Header section */
 header {
-	background-color: #696969; /* gris cochon */
-	padding: 10px;
+	
+	height: 60px;
+                    background: url(../img/bkgheaderRepeatX.png) repeat-x bottom left;
 	color: white;
 }
 
-header a {
-	color: white;
-	text-decoration: none;
+h1 img {
+    height: 40px;
+    margin: 2px 0 0 10px;
+    float: left;
 }
-
+header h2 {
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 12px;
+    margin-left: 15px;
+    float: left;
+}
 header a:hover {
 	color: #cccccc;
 }
 
 /* menu section */
-#menu {
-	list-style: none;
-	margin-bottom: 70px;
-	margin-left: -20px;
+#menu, #filtres, #legende {
+        display: none;
 }
 
 #menu li {
@@ -50,46 +108,12 @@ header a:hover {
 	background-color: #cdcdcd;
 }
 
-/* Form section */
-form {
-	background-color: #ededed;
-	padding: 5px;
-}
 
-form#filtres {
-	height: 130px;
-}
-
-form .filtre {
-	margin-left: 20px;
-	float: left;
-}
-
-form .filtre h3 {
-	margin: 10px 10px 5px 30px;
-}
-
-form .filtre select {
-	width: 200px;
-}
-
-form#filtres input[type="submit"] {
-	float: left;
-	margin-top: 60px;
-	margin-left: 30px;
-	width: 100px;
-	height: 30px;
-	font-size: 1.0em;
-	cursor: pointer;
-}
-
-form .mini {
-	font-size: 0.8em;
-}
 
 /* Table section */
 table {
-	width: 100%;
+	width: 98%;
+                    margin: 1% 1%;
 	border-spacing: 0;
 }
 
@@ -113,14 +137,10 @@ table {
 	border: 1px solid #424242; /* gris geek */
 }
 
-tr.line1 td, tr.line2 td,
-tr.line11 td, tr.line12 td,
-tr.line21 td, tr.line22 td,
-tr.line31 td, tr.line32 td,
-tr.line41 td, tr.line42 td {
-	font-size: 0.8em;
-	padding: 5px;
-	border: 1px solid #E5E5E5;
+td, th {
+	font-size: 12px;
+	padding: 8px 10px;
+	border: 1px solid #ccc;
 }
 
 .line1, line2,
@@ -132,8 +152,8 @@ tr.line41 td, tr.line42 td {
 
 .line1 { background-color: #f9f9f9; }
 .line2 { background-color: #ffffff; }
-.line11 { background-color: #fff6a9; }
-.line12 { background-color: #fdf7c7; }
+.line11 { background-color: #fff; }
+.line12 { background-color: #eee; }
 .line21 { background-color: #dbe6e8; }
 .line22 { background-color: #e7f9fd; }
 .line31 { background-color: #d6ffd0; }
