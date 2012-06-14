@@ -112,7 +112,7 @@ include("html_beginning.php");
 			<tr class="line<?php echo $row['status_id'].$i%2+1; $i++; ?>">
 				
 				<td align="left" class="col2">
-					<a href="error.php?e=<?php echo $row['error_id']; ?>"><?php echo $row['error_msg']; ?></a>
+                                    <a href="error.php?e=<?php echo $row['error_id']; ?>"><?php echo utf8_decode($row['error_msg']); ?></a>
 					
 				</td>
                                                                                 <td align="center" class="col1"><?php echo ucfirst($row['ville']); ?></td>

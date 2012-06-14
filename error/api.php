@@ -29,7 +29,7 @@ $domain = "urbantraps.fr";
 
 $domain_id = dbSelectDomain($connectDBLOG, $domain, $title);
 
-$msg = $_GET['error'] . 'on '.$_GET['device'].' ('.$_GET['osversion'].') (line '.$_GET['line'].' on file '.$_GET['file'].')';
+$msg = $_GET['error'] . ' on '.$_GET['device'].' ('.$_GET['osversion'].') (line '.$_GET['line'].' on file '.$_GET['file'].')';
 
 
 
