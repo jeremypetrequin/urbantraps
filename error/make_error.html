@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Catching javascript error</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        
+    </body>
+    <script src="error.js"></script>
+    <script>
+        var er = new ErrorCatching('http://js_catch_error/api.php');
+        function test() { throw new TypeError("u mad"); }
+        test();       
+    </script>
+</html>

@@ -1,0 +1,168 @@
+html, body { 
+	margin: 0; 
+	padding: 0;
+	font-family: Arial, sans-serif; 
+}
+
+/* Clear */
+.visualClear {
+	clear: both;
+	visibility: hidden;
+}
+
+/* Header section */
+header {
+	background-color: #696969; /* gris cochon */
+	padding: 10px;
+	color: white;
+}
+
+header a {
+	color: white;
+	text-decoration: none;
+}
+
+header a:hover {
+	color: #cccccc;
+}
+
+/* menu section */
+#menu {
+	list-style: none;
+	margin-bottom: 70px;
+	margin-left: -20px;
+}
+
+#menu li {
+	margin: 10px 30px 10px 10px;
+	float: left;
+}
+
+#menu li a {
+	padding: 10px;
+	background-color: #ededed;
+	text-decoration: none;
+	color: #363636;
+}
+
+#menu li a:hover,
+#menu li a:focus {
+	background-color: #cdcdcd;
+}
+
+/* Form section */
+form {
+	background-color: #ededed;
+	padding: 5px;
+}
+
+form#filtres {
+	height: 130px;
+}
+
+form .filtre {
+	margin-left: 20px;
+	float: left;
+}
+
+form .filtre h3 {
+	margin: 10px 10px 5px 30px;
+}
+
+form .filtre select {
+	width: 200px;
+}
+
+form#filtres input[type="submit"] {
+	float: left;
+	margin-top: 60px;
+	margin-left: 30px;
+	width: 100px;
+	height: 30px;
+	font-size: 1.0em;
+	cursor: pointer;
+}
+
+form .mini {
+	font-size: 0.8em;
+}
+
+/* Table section */
+table {
+	width: 100%;
+	border-spacing: 0;
+}
+
+#legende {
+	position: fixed;
+	background-color: white;
+	right: 150px;
+	width: 120px;
+	border: 1px solid #696969;
+	font-size: 0.8em;
+}
+
+#legende td {
+	padding: 5px;
+}
+
+#legende div {
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	border: 1px solid #424242; /* gris geek */
+}
+
+tr.line1 td, tr.line2 td,
+tr.line11 td, tr.line12 td,
+tr.line21 td, tr.line22 td,
+tr.line31 td, tr.line32 td,
+tr.line41 td, tr.line42 td {
+	font-size: 0.8em;
+	padding: 5px;
+	border: 1px solid #E5E5E5;
+}
+
+.line1, line2,
+.line11, .line12, .line21, .line22,
+.line31, .line32, .line41, .line42 {
+	color: #000000;
+	font-weight: normal;
+}
+
+.line1 { background-color: #f9f9f9; }
+.line2 { background-color: #ffffff; }
+.line11 { background-color: #fff6a9; }
+.line12 { background-color: #fdf7c7; }
+.line21 { background-color: #dbe6e8; }
+.line22 { background-color: #e7f9fd; }
+.line31 { background-color: #d6ffd0; }
+.line32 { background-color: #eaffe7; }
+.line41 { background-color: #ffcccc; }
+.line42 { background-color: #ffe4e4; }
+
+tr.header th {
+	color:#000;
+	font-weight:normal;
+  	background:#efefef;
+}
+
+/* Statistics */
+
+#stat {
+	margin-left: 10px;
+}
+
+#stat .graph {
+	float: left;
+	margin: 20px;
+}
+
+#stat h3 {
+	margin-left: 30px;
+}
+
+/* jqPlot hack */
+table.jqplot-table-legend {
+	width: auto;
+}
