@@ -88,8 +88,8 @@ function dbSelectAllError($con, $data = "") {
                                         Joueur.nom as joueur
 	FROM 
         error as e 
-        LEFT JOIN Ville on  e.error_file = Ville.id
-        LEFT JOIN Joueur on e.error_line = Joueur.id,
+        LEFT JOIN Ville on  e.error_line = Ville.id
+        LEFT JOIN Joueur on e.error_file = Joueur.id,
 error_project as p,
 		error_dev as d, error_type as t,
 		error_status as s

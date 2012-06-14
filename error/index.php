@@ -115,8 +115,8 @@ include("html_beginning.php");
                                     <a href="error.php?e=<?php echo $row['error_id']; ?>"><?php echo utf8_decode($row['error_msg']); ?></a>
 					
 				</td>
-                                                                                <td align="center" class="col1"><?php echo ucfirst($row['ville']); ?></td>
-                                                                                <td align="center" class="col1"><?php echo $row['joueur']; ?></td>
+                                                                                <td align="center" class="col1"><?php echo ucfirst(utf8_decode($row['ville'])); ?></td>
+                                                                                <td align="center" class="col1"><?php echo utf8_decode($row['joueur']); ?></td>
 				<td align="center" class="col1"><?php echo $row['error_date']; ?></td>
 				<td align="center" class="col2"><?php echo $row['error_count']; ?></td>
 			</tr>
