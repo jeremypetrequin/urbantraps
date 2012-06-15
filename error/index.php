@@ -66,7 +66,7 @@ include("html_beginning.php");
 
 <hr class="visualClear"/>
 
-<h3 style="margin-left: 30px">Logs d'erreur</h3>
+<h3 style="margin-left: 30px">Logs d'erreurs</h3>
 <table id="legende">
 	<tr><td colspan="2" align="center"><b>L&eacute;gende</b></td></tr>
 	<tr>
@@ -97,8 +97,8 @@ include("html_beginning.php");
 		<th width="35%" class="col2"><b>Erreur</b></th>
                                         <th width="10%" class="col1"><b>Ville</b></th>
                                         <th width="10%" class="col1"><b>User</b></th>
-		<th width="20%" class="col1"><b>Derni&egrave;re</b></th>
-		<th width="10%" class="col2"><b>Nombre</b></th>
+		<th width="20%" class="col1"><b>Date</b></th>
+		<th width="10%" class="col2"><b>Quantit&eacute;</b></th>
 	</tr>
 
 	<?php 
