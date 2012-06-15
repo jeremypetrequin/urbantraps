@@ -23,10 +23,12 @@
         <!-- <img src="" alt=""/> -->
     </div>
     <div id="menu">
-        <ul>
-            <?php wp_list_pages( $args ); ?> 
-        </ul>
-        <div class="clear"></div>
+        <div>
+            <div id="triangle_select"></div>
+            <ul>
+                <?php wp_list_pages( $args ); ?> 
+            </ul>
+        </div>
     </div> <?php //menu ?>
 </div> <?php //navigation ?>
 

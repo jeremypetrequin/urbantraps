@@ -63,7 +63,8 @@
     $w = $(window),
     googlemap = null,
     pages = [],
-    previousPage = null;
+    previousPage = null,
+    polyglote;
 
     //resize the map's div to fullscreen, and dispatch the event resize on googlemap
      function _r() {
@@ -80,6 +81,50 @@
         center : [43.60544274006872, 1.4487576484680176],
         zoom : 16
     });
+    
+    function CustomMarker(latlng,  map) {
+    this.latlng_ = latlng;
+
+    // Once the LatLng and text are set, add the overlay to the map.  This will
+    // trigger a call to panes_changed which should in turn call draw.
+    this.setMap(map);
+  }
+
+  CustomMarker.prototype = new google.maps.OverlayView();
+
+  CustomMarker.prototype.draw = function() {
+    var me = this;
+
+    // Check if the div has been created.
+    var div = this.div_;
+    if (!div) {
+      // Create a overlay text DIV
+      div = this.div_ = document.createElement('DIV');
+      // Create the DIV representing our CustomMarker
+      div.style.border = "none";
+      div.style.position = "absolute";
+      div.style.paddingLeft = "0px";
+      div.style.cursor = 'pointer';
+
+      var img = document.createElement("img");
+      img.src = "http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/bluecirclemarker.png";
+      div.appendChild(img);
+      google.maps.event.addDomListener(div, "click", function(event) {
+        google.maps.event.trigger(me, "click");
+      });
+
+      // Then add the overlay to the DOM
+      var panes = this.getPanes();
+      panes.overlayImage.appendChild(div);
+    }
+
+    // Position the overlay 
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
+    if (point) {
+      div.style.left = point.x + 'px';
+      div.style.top = point.y + 'px';
+    }
+  };
     
     
     
@@ -106,7 +151,7 @@
 function drawWay(from, to, speedPan){
         
           //console.log(from);
-          console.log('SPEED PAN : '+speedPan);
+          //console.log('SPEED PAN : '+speedPan);
             googlemap.calculItineraire(from.perso_fields.latitude+', '+from.perso_fields.longitude, to.perso_fields.latitude+', '+to.perso_fields.longitude, googlemap, function(data) {
                         //console.log(data);
                       
@@ -136,46 +181,86 @@ function drawWay(from, to, speedPan){
                            //time = time + temps de l'anim
                        //}
                        
-                       var color = "#000000";
+                       var color = "#0025ED";
                        var opt = {
                             strokeColor: color,
                             strokeOpacity : 1,
-                            strokeWeight : color == "#000000" ? 10 : 5, 
+                            strokeWeight : color == "#0025ED" ? 3 : 5, 
                             path : [],
                             map : googlemap.map
                         };
-        
-                       var polyglote = new google.maps.Polyline(opt);
+                        //if(polyglote) polyglote.setMap(null);
+                        if(!polyglote) {
+                            polyglote = new google.maps.Polyline(opt);
+                        }
                        
                        
-                        var t = 0, interval = /*1000/25*/speedPan/(tab.length-1);
+                        var t = 0, interval = 1000/25, tabLenght = tab.length; //speedPan/(tab.length-1);
                         
-                        var timer;
+                        function animatePoly() {
+                            var floorT = Math.floor(t), path = [];
+                            
+                            for(var i = 0; i <=floorT; i++) {
+                               //console.log("setInterval2");
+                               if(floorT <  tabLenght) {
+                                    path.push(tab[i]);
+                               }
+                             }
+                             
+                             if(floorT < equation.length) {
+                                path.push(new google.maps.LatLng(
+                                    equation[floorT].lat(t),
+                                    equation[floorT].lng(t)
+                                ));
+                             }
+                                    
+                             if(floorT <  tab.length) {
+                                setTimeout(animatePoly, interval);
+                             }
+                             
+                            /*for(var i = 0; i<=floorT; i++) {
+                                ;
+                            }*/
+                            
+                            
+                            t+=(interval/1000);
+                            if(path.length) polyglote.setPath(path);
+                            
+                            
+                        }
+                        
+                        
+                        animatePoly();
+                        
+                        /*var timer;
                         timer = setInterval(function() {
-                            console.log("setInterval");
+                            //console.log("setInterval");
                             var toto = Math.floor(t), path = [];
+                            //console.log(toto);
                            for(var i = 0; i <=toto; i++) {
+                               //console.log("setInterval2");
                                if(toto <  tab.length) {
                                 //console.log(i);
                                     path.push(tab[i]);
                                }else{
+                                    //console.log("ma bite");
                                     clearInterval(timer); 
                                     timer = null;
                                }
                            }
                            
-                           t+= (interval/1000);
+                           t+= (interval/1000);*/
                            
                            //Problème avec la longueur du tableau ?
-                           path.push(
+                          // path.push(
                                 /*new google.maps.LatLng(
                                     equation[toto].lat(t),
                                     equation[toto].lng(t)
                                 )*/
-                           );
+                          // );
                            
                            
-                           if(path.length) polyglote.setPath(path);
+                          // if(path.length) polyglote.setPath(path);
                            
                          //  console.log("TOTO = " +toto);
                        //    console.log("TAB LENGTH = " +tab.length);
@@ -186,8 +271,26 @@ function drawWay(from, to, speedPan){
                                timer = null;
                            }*/
                             //console.log('INTERVAL');
-                       }, interval);
+                      // }, interval);
+                     var toto = Math.floor(t), path = [];
+                       function timer() {
+                                
+                           for(var i = 0; i <=toto; i++) {
+                               //console.log("setInterval2");
+                               if(toto <  tab.length) {
+                                //console.log(i);
+                                    path.push(tab[i]);
+                                    //setTimeout(timer, interval);
+                               }else{
+                                    
+                               }
+                           }
+                           
+                       }
                        
+                        setTimeout(timer, interval);
+
+
                        //console.log(equation);
                        
                        
@@ -207,7 +310,7 @@ function drawWay(from, to, speedPan){
                 });*/
 }    
   
-  
+
   
 
 function drawItineraire(tab, color) {
@@ -240,6 +343,7 @@ function listenChange(history) {
 //ecouter l'event de changement :  
 
 $(window).bind('urlchange', urlChange);
+var $menu = $('#menu');
 
 function urlChange(){
     var param = location.href.split('#!/'), //on recupere le hash
@@ -256,11 +360,11 @@ function urlChange(){
             if(pages[i].id == t[1]){
                 speedPan = Math.sqrt(((pages[i].perso_fields.latitude -currentLat)*(pages[i].perso_fields.latitude -currentLat))+((pages[i].perso_fields.longitude -currentLng)*(pages[i].perso_fields.longitude -currentLng)))*(1600000/googlemap.map.zoom);
                 //console.log(speedPan);
+                    googlemap.map.panTo(new google.maps.LatLng(pages[i].perso_fields.latitude, pages[i].perso_fields.longitude), speedPan, function() {
 
-                googlemap.map.panTo(new google.maps.LatLng(pages[i].perso_fields.latitude, pages[i].perso_fields.longitude), speedPan, function() {
-
-                });
-
+                    });
+                    $menu[0].className = 'page-item-'+pages[i].id;
+                
                 drawWay(previousPage, pages[i], speedPan);
                 previousPage = pages[i];
                 break;
@@ -271,6 +375,6 @@ function urlChange(){
     //console.log(pages[0], pages[1]);
 }
 
-
+//location.href = '#!/page/401';
    
 })(jQuery, window);

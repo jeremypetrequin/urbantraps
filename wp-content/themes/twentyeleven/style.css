@@ -1,8 +1,53 @@
-body{
-   margin:0;
-   padding: 0;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
+/** style */
 #gmap{
    position: absolute;
    margin:0;
@@ -20,7 +65,8 @@ body{
 #navigation{
     width: 100%;
     height: 50px;
-    background: #fff;
+    
+    /*background: #fff;*/
 }
 
 #logo{
@@ -34,10 +80,20 @@ body{
     background: #f00;
 }
 
-#navigation ul{
+
+
+#menu>div{
     margin: 0px auto;
     padding: 0px;
+    overflow: hidden;
+    position: relative;
     width: 366px;
+}
+
+#navigation ul {
+    position: relative;
+    z-index: 1000;
+    overflow: hidden;
 }
 
 #navigation li{
@@ -47,8 +103,59 @@ body{
     float: left;
     display:block;
     border: 1px solid black;
+ 
+    /*background: #00f;*/
+}
+
+.selected_menu{
     background: #00f;
 }
+
+#menu.page-item-401 #triangle_select {
+    left : 60px;
+    transition:ease left 0.5s;
+    -moz-transition:ease left 0.5s;
+    -o-transition:ease left 0.5s;
+    -webkit-transition:ease left 0.5s;
+    -ms-transition:ease left 0.5s;
+}
+
+#menu.page-item-406 #triangle_select {
+    left : 180px;
+    transition:ease left 0.5s;
+    -moz-transition:ease left 0.5s;
+    -o-transition:ease left 0.5s;
+    -webkit-transition:ease left 0.5s;
+    -ms-transition:ease left 0.5s;
+}
+
+#menu.page-item-408 #triangle_select {
+    left : 300px;
+    transition:ease left 0.5s;
+    -moz-transition:ease left 0.5s;
+    -o-transition:ease left 0.5s;
+    -webkit-transition:ease left 0.5s;
+    -ms-transition:ease left 0.5s;
+}
+
+#triangle_select {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    margin-left:-12px;
+    display: block;
+    background: pink;
+    z-index: 1;
+    transition:ease left 0.5s;
+    -moz-transition:ease left 0.5s;
+    -o-transition:ease left 0.5s;
+    -webkit-transition:ease left 0.5s;
+    -ms-transition:ease left 0.5s;
+}
+
+
 
 .page_item a{
     text-align: center;    
