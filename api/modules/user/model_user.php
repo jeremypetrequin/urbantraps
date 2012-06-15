@@ -91,8 +91,17 @@ class model_user extends modelDefault {
         $statutModel = new model_statut();
         $statuts = $statutModel->getStatutUser($tab[0]['id']);
         $statuts = is_array($statuts) ? $statuts : array();
+        
+        for($i= 0; $i<count($statuts); $i++) {
+            $statuts[$i]['nom'] = utf8_encode($statuts[$i]['nom']);
+        }
+        
         $tab[0]['statuts_joueurs'] = count($statuts) > 0 ? $statuts : array();
         $tab[0]['statuts'] = $statutModel->getItems();
+        
+        for($i= 0; $i<count($tab[0]['statuts']); $i++) {
+            $tab[0]['statuts'][$i]['nom'] = utf8_encode($tab[0]['statuts'][$i]['nom']);
+        }
         
         return $tab;
     }
@@ -127,7 +136,7 @@ class model_user extends modelDefault {
             LEFT JOIN Ville ON PanneauVille.Ville_id = Ville.id
             LEFT JOIN Panneau ON PanneauVille.Panneau_id = Panneau.id
             LEFT JOIN Jeu ON AJouer.Jeu_id = Jeu.id
-            WHERE AJouer.Joueur_id = ".$user_id;
+            WHERE AJouer.Joueur_id = ".$user_id.' LIMIT 0, 20';
         
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         return is_array($tab) ? $tab : array();
