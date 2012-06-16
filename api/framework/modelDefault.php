@@ -26,6 +26,10 @@ class modelDefault {
         $this->_id = $id;
     }
     
+    public function execute($q) {
+        $this->db->exec($q);
+    }
+    
     public function getItems() {
         $q = 'SELECT * FROM '.$this->_table;
         return $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
