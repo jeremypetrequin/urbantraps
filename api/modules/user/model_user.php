@@ -136,7 +136,7 @@ class model_user extends modelDefault {
             LEFT JOIN Ville ON PanneauVille.Ville_id = Ville.id
             LEFT JOIN Panneau ON PanneauVille.Panneau_id = Panneau.id
             LEFT JOIN Jeu ON AJouer.Jeu_id = Jeu.id
-            WHERE AJouer.Joueur_id = ".$user_id.' LIMIT 0, 20';
+            WHERE AJouer.Joueur_id = ".$user_id.' ORDER BY AJouer.date DESC LIMIT 0, 20';
         
         $tab = $this->db->query($q)->fetchAll(PDO::FETCH_ASSOC);
         return is_array($tab) ? $tab : array();
