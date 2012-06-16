@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #e3e3e3;
 }
 ol, ul {
 	list-style: none;
@@ -103,7 +104,7 @@ table {
 }
 
 #content{
-	width: 990px;	
+	width: 1000px;	
 	margin: auto;
 }
 
@@ -121,28 +122,44 @@ table {
 }
 
 .action{
-	float: left;
 	color: white;	
 }
 
 #scanne{
+	float: left;
 	background: url(images/push1.png) no-repeat;
 	width: 331px;
 	height: 131px;
 }
 
+#scanne p{
+	margin: 40px 0 0 120px;
+}
+
 #redecouvre{
+	float: left;
 	background: url(images/push2.png) no-repeat;
 	width: 329px;
 	height: 125px;
-	margin: 6px 0 0 0;
+	margin: 6px 0 0 10px;
+}
+
+#redecouvre p{
+	margin: 40px 0 0 120px;
 }
 
 #debloque{
+	float: right;
 	background: url(images/push3.png) no-repeat;
 	width: 330px;
 	height: 131px;
 	margin: 1px 0 0 0;
+	position: relative;
+	right: -13px;
+}
+
+#debloque p{
+	margin: 30px 0 0 120px;
 }
 
 .big_text{
@@ -162,12 +179,21 @@ table {
 	width: 495px;
 	height: 291px;
 	float: left;
+	background: url(images/avis.png) no-repeat;
 }
 
 #blog{
 	width: 488px;
 	height: 284px;	
 	float: right;
+	background: url(images/blog.png) no-repeat;
+}
+
+#footer{
+	width: 1150px;
+	height: 97px;
+	margin: auto;
+	background: url(images/travaux.png) no-repeat;
 }
 
 #menu>div{
