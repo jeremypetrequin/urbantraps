@@ -26,6 +26,11 @@ class mission extends pageDefault {
               'Mission_id'=>$_REQUEST['mission_id'],
               'start' => date('Y/m/d H:i:s')
         ));
+        
+        
+        $q = "UPDATE `DetailScore` SET `nb_missions` = nb_missions+1 WHERE `DetailScore`.`id_joueur` =".$_REQUEST['joueur_id'].";";
+        $this->_model->execute($q);
+        
     }
 
     /*
