@@ -39,6 +39,9 @@ class badge extends pageDefault {
             'Joueur_id' => $_REQUEST['user_id'],
             'date' => date('Y/m/d H:i:s')
         ));
+        
+        $q = "UPDATE `DetailScore` SET `nb_badges` = nb_badges+1 WHERE `DetailScore`.`id_joueur` =".$_REQUEST['user_id'].";";
+        $this->_model->execute($q);
     }
 
 }

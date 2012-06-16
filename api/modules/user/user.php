@@ -154,7 +154,7 @@ class user extends pageDefault {
 
         $score +=$scoreDetail['nb_badges'] * 20;
         $score +=$scoreDetail['nb_scans'] * 5;
-        $score +=$scoreDetail['nb_missions'] * 50;
+        $score +=$scoreDetail['nb_missions'] * 100;
                     
         return $score;
     }
