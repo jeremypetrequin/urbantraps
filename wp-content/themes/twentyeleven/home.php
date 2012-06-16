@@ -16,22 +16,21 @@
         'walker'       => new SimpleIndentMenuWalker,
         'post_status'  => 'publish' 
 ); ?>
-
-<div id="navigation">
-    <div id="logo">
-        Logo
-        <!-- <img src="" alt=""/> -->
-    </div>
-    <div id="menu">
-        <div>
-            <div id="triangle_select"></div>
-            <ul>
-                <?php wp_list_pages( $args ); ?> 
-            </ul>
-        </div>
-    </div> <?php //menu ?>
-</div> <?php //navigation ?>
-
+<div id="content">
+	<div id="slider">
+	</div>
+	<div id="actions">
+		<div id="scanne" class="action"><p><span class="big_text">SCANNE</scan><br/><span class="small_text">DES PANNEAUX</scan></p></div>
+		<div id="redecouvre" class="action"><p><span class="big_text">REDÉCOUVRE</scan> <br /><span class="small_text">TA VILLE</scan></p></div>
+		<div id="debloque" class="action"><p><span class="big_text">DÉBLOQUE</scan><br /><span class="small_text">DES JEUX AVEC LA<br />COMMUNAUTÉ</scan></p></div>
+		<div class="clear"></div>
+	</div>
+	<div id="extracts">
+		<div id="avis"></div>
+		<div id="blog"></div>
+		<div class="clear"></div>
+	</div>
+</div>
 
 <?php get_footer(); ?>
 

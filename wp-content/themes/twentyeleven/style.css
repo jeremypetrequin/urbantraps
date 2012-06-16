@@ -50,8 +50,10 @@ table {
 /** style */
 #gmap{
    position: absolute;
-   margin:0;
+   margin: 226px 0 0 0;
    padding: 0;
+   width: 100%;
+   height: 100%;
 }
 
 #wrapper{
@@ -64,23 +66,109 @@ table {
 
 #navigation{
     width: 100%;
-    height: 50px;
-    
+    height: 226px;
+    position: relative;
     /*background: #fff;*/
 }
 
+#header{
+	background: url(images/fond_header.png) repeat-x;	
+	height: 166px;
+	width: 100%;
+	position: relative;
+}
+
+#ville{
+	width: 990px;
+	height: 174px;
+	background: url(images/fond_ville.png) no-repeat 9px;
+	margin: auto;		
+	text-align: center;
+}
+
+
 #logo{
-    background: #0f0;
-    width: 200px;
-    height: 30px;
-    margin: auto;
+    background: url(images/logo.png) no-repeat;
+    width: 252px;
+    height: 166px;
+    position: absolute;
+    top: 0;
 }
 
 #menu{
-    background: #f00;
+    background: url(images/fond_menu.png) repeat-x;
+    height: 61px;
+    width: 100%;
+	margin: -9px 0 0;
 }
 
+#content{
+	width: 990px;	
+	margin: auto;
+}
 
+#slider{
+	width: 100%;
+	height: 368px;
+	margin: 42px 0 0 0;
+	background: #00f; 	
+}
+
+#actions{
+	width: 100%;
+	height: 131px;
+	margin: 17px 0 0 0;
+}
+
+.action{
+	float: left;
+	color: white;	
+}
+
+#scanne{
+	background: url(images/push1.png) no-repeat;
+	width: 331px;
+	height: 131px;
+}
+
+#redecouvre{
+	background: url(images/push2.png) no-repeat;
+	width: 329px;
+	height: 125px;
+	margin: 6px 0 0 0;
+}
+
+#debloque{
+	background: url(images/push3.png) no-repeat;
+	width: 330px;
+	height: 131px;
+	margin: 1px 0 0 0;
+}
+
+.big_text{
+	font-size: 22px;	
+}
+
+.small_text{
+	font-size: 16px;	
+}
+
+#extracts{
+	width: 100%;
+	height: 300px;	
+}
+
+#avis{
+	width: 495px;
+	height: 291px;
+	float: left;
+}
+
+#blog{
+	width: 488px;
+	height: 284px;	
+	float: right;
+}
 
 #menu>div{
     margin: 0px auto;

@@ -209,4 +209,10 @@
 
 
 	<div id="main">
+		<div id="navigation">
+		    <div id="header">
+		    	<div id="ville"><img src=<?php bloginfo('template_url') ?>/images/logo.png title="" alt="" /></div>
+		    	<div id="menu"></div>
+		    </div>
+		</div> <?php /*navigation*/ ?>
             
