@@ -30,11 +30,11 @@ if(canSee($post)) {
                         $width = '';
                         $height = '';
                         
-                        if($image_attributes[1] < 265) {
-                            $width = ' width="265" ';
+                        if($image_attributes[1] < 350) {
+                            $width = ' width="352" ';
                         } 
-                        if($image_attributes[2] < 225) {
-                            $height = ' height="255" ';
+                        if($image_attributes[2] < 190) {
+                            $height = ' height="190" ';
                         }
                         ?> 
                          <a href="<?php echo the_permalink(); ?>" title="Lire l'article <?php the_title(); ?>">
@@ -45,9 +45,9 @@ if(canSee($post)) {
                 ?>
             </div>
             <div class="resume_post">
-                <h2 class="entry-title">
+                <h3 class="entry-title">
                      <a href="<?php echo the_permalink(); ?>" title="Lire l'article <?php the_title(); ?>"><?php the_title(); ?></a>
-                </h2>
+                </h3>
 
 
                 <?php if ( 'post' == get_post_type() ) : ?>
@@ -99,6 +99,6 @@ if(canSee($post)) {
                 <?php //edit_post_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?>
             </div>
             
-            <a class="readMore" href="<?php echo the_permalink(); ?>" title="Lire l'article <?php the_title(); ?>"><?php the_title(); ?></a>
+            <a class="readMore" href="<?php echo the_permalink(); ?>" title="Lire l'article <?php the_title(); ?>">Lire la suite</a>
 	</article>
 <?php } ?>

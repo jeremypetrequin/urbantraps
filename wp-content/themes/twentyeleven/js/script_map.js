@@ -56,31 +56,128 @@
 
 
 
-;(function($, window) {
-   
-    
+;(function($, window) {    
     var $map = $('#gmap'), 
     $w = $(window),
+    $b = $('body'),
     googlemap = null,
     pages = [],
     previousPage = null,
+    $content = $('#content'),
     polyglote;
 
-    //resize the map's div to fullscreen, and dispatch the event resize on googlemap
+    //UI
      function _r() {
         $map[0].style.width = $w.width()+'px';
-        $map[0].style.height = $w.height()+'px';
+        $map[0].style.height = $b.height() - 49+'px';
         googlemap && googlemap.resize();
     }
-
     
+     function _wr() {
+        $content.css('min-height', $w.height() - 310);
+    }
+    
+    //listener
+    $w.resize(function() {
+        _wr();
+        $w.trigger('size-change');
+        
+    })
+    $w.bind('size-change', _r);
+    
+    _wr();
+    _r();
+    
+    
+    var style =[
+  {
+    featureType: "administrative.province",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "administrative.land_parcel",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "administrative.province",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "administrative.locality",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "water",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "road",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "poi",
+    elementType: "labels",
+    stylers: [
+      { visibility: "off" }
+    ]
+  },{
+    featureType: "poi",
+    elementType: "geometry",
+    stylers: [
+      { saturation: -100 },
+      { lightness: 94 }
+    ]
+  },{
+    featureType: "landscape",
+    stylers: [
+      { saturation: -74 },
+      { lightness: 94 }
+    ]
+  },{
+    featureType: "water",
+    stylers: [
+      { saturation: 24 },
+      { lightness: -9 },
+      { hue: "#00f6ff" }
+    ]
+  },{
+    featureType: "road.highway",
+    stylers: [
+      { saturation: -98 },
+      { lightness: 68 }
+    ]
+  },{
+    featureType: "road.arterial",
+    stylers: [
+      { saturation: -100 },
+      { lightness: 65 }
+    ]
+  },{
+    featureType: "administrative.country",
+    elementType: "geometry",
+    stylers: [
+      { visibility: "on" },
+      { saturation: -99 },
+      { lightness: 37 }
+    ]},{featureType: "landscape",elementType: "labels",stylers: [{ visibility: "off" }]},{elementType: "labels",stylers: [{ visibility: "off" }]},{featureType: "administrative.country",elementType: "labels",stylers: [{ visibility: "on" }]}];
     //init
-    $w.resize(_r); //listen resize for a full screen map
-    _r(); //launch resize first time
+    //$w.resize(_r); //listen resize for a full screen map
+    
+   // _r(); //launch resize first time
     googlemap = new Gmap($map, {
         center : [43.60544274006872, 1.4487576484680176],
         zoom : 16
-    });
+    }, style);
     
     function CustomMarker(latlng,  map) {
     this.latlng_ = latlng;
@@ -90,41 +187,7 @@
     this.setMap(map);
   }
 
-  CustomMarker.prototype = new google.maps.OverlayView();
 
-  CustomMarker.prototype.draw = function() {
-    var me = this;
-
-    // Check if the div has been created.
-    var div = this.div_;
-    if (!div) {
-      // Create a overlay text DIV
-      div = this.div_ = document.createElement('DIV');
-      // Create the DIV representing our CustomMarker
-      div.style.border = "none";
-      div.style.position = "absolute";
-      div.style.paddingLeft = "0px";
-      div.style.cursor = 'pointer';
-
-      var img = document.createElement("img");
-      img.src = "http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/bluecirclemarker.png";
-      div.appendChild(img);
-      google.maps.event.addDomListener(div, "click", function(event) {
-        google.maps.event.trigger(me, "click");
-      });
-
-      // Then add the overlay to the DOM
-      var panes = this.getPanes();
-      panes.overlayImage.appendChild(div);
-    }
-
-    // Position the overlay 
-    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
-    if (point) {
-      div.style.left = point.x + 'px';
-      div.style.top = point.y + 'px';
-    }
-  };
     
     
     
@@ -344,10 +407,49 @@ function listenChange(history) {
 
 $(window).bind('urlchange', urlChange);
 var $menu = $('#menu');
+var pages = [],
+menus = [];
 
 function urlChange(){
-    var param = location.href.split('#!/'), //on recupere le hash
-    currentLat = googlemap.map.center.$a,
+    
+    var param = location.href.split('#!/'),
+    page = param[1] || 'home';
+    
+    pages[page] = pages[page] || $('#'+page+'-tpl').html();
+    menus[page] = menus[page] || $('#'+page);
+    
+    $menu.find('li.active').removeClass('active');
+    menus[page].addClass('active');
+    
+    $content.height($content.height()).fadeOut(450, function() {
+        $content.html(pages[page]).fadeIn(450, function() {
+            $content.height('');
+            $w.trigger('size-change')
+            //setTimeout(function() {$w.trigger('size-change');}, 500);
+            if(page == 'home') {
+                $('#slider').cycle({ 
+                    fx: 'scrollHorz',
+                    pager : $('#pager')
+                });
+            }
+        });
+    });
+    
+    
+    
+    
+    //console.log(pages[1], pages[2]); 
+    //console.log(pages[0], pages[1]);
+}
+
+urlChange();
+//location.href = '#!/page/401';
+  
+  
+
+/*
+ * 
+ currentLat = googlemap.map.center.$a,
     currentLng = googlemap.map.center.ab,
     speedPan = 0;
     if(param.length > 1) {
@@ -371,10 +473,42 @@ function urlChange(){
             }
         }
     }
-    //console.log(pages[1], pages[2]); 
-    //console.log(pages[0], pages[1]);
-}
 
-//location.href = '#!/page/401';
-   
+  CustomMarker.prototype = new google.maps.OverlayView();
+
+  CustomMarker.prototype.draw = function() {
+    var me = this;
+
+    // Check if the div has been created.
+    var div = this.div_;
+    if (!div) {
+      // Create a overlay text DIV
+      div = this.div_ = document.createElement('DIV');
+      // Create the DIV representing our CustomMarker
+      div.style.border = "none";
+      div.style.position = "absolute";
+      div.style.paddingLeft = "0px";
+      div.style.cursor = 'pointer';
+
+      var img = document.createElement("img");
+      img.src = "http://gmaps-samples.googlecode.com/svn/trunk/markers/circular/bluecirclemarker.png";
+      div.appendChild(img);
+      google.maps.event.addDomListener(div, "click", function(event) {
+        google.maps.event.trigger(me, "click");
+      });
+
+      // Then add the overlay to the DOM
+      var panes = this.getPanes();
+      panes.overlayImage.appendChild(div);
+    }
+
+    // Position the overlay 
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
+    if (point) {
+      div.style.left = point.x + 'px';
+      div.style.top = point.y + 'px';
+    }
+  };
+  
+  */
 })(jQuery, window);

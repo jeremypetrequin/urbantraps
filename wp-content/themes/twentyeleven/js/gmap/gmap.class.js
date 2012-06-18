@@ -35,7 +35,12 @@ window.Gmap = function(elmt, options, style, callBack) {
      _myOptions = {
             zoom: 14,
             center: '',
-            mapTypeId: _gm.MapTypeId.ROADMAP
+            mapTypeId: _gm.MapTypeId.ROADMAP,
+            overviewMapControl : false,
+            panControl : false,
+            rotateControl : false,
+            scaleControl : false,
+            zoomControl : false
      },
      _debugData = {rectangleCluster : []}; //usefull for stored diferent data, debug for clustering for example //
 

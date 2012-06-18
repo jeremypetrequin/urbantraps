@@ -214,15 +214,15 @@
 		    	<div id="ville"><img src=<?php bloginfo('template_url') ?>/images/logo.png title="" alt="" /></div>
 		    	<div id="menu">
 		    		<ul>
-		    			<li id="home"><a href="">home</a></li>
+		    			<li id="home"><a href="#!/">home</a></li>
 		    			<li class="sep_menu"></li>
-		    			<li id="appli"><a href=""><span class="big_text">L'APPLICATION</scan><br /><span class="small_text">URBAN TRAPS</scan></a></li>
+		    			<li id="application"><a href="#!/application" title="application"><span class="big_text">L'APPLICATION</scan><br /><span class="small_text">URBAN TRAPS</scan></a></li>
 		    			<li class="sep_menu"></li>
-		    			<li id="invasion"><a href=""><span class="big_text">L'INVASION</scan><br /><span class="small_text">DANS TA VILLE</scan></a></li>
+		    			<li id="invasion"><a href="#!/invasion" title="invasion"><span class="big_text">L'INVASION</scan><br /><span class="small_text">DANS TA VILLE</scan></a></li>
 		    			<li class="sep_menu"></li>
-		    			<li id="blog"><a href=""><span class="big_text">LE BLOG</scan><br /><span class="small_text">NOUS SUIVRE</scan></a></li> 
+		    			<li id="blog"><a href="#!/blog" title="blog"><span class="big_text">LE BLOG</scan><br /><span class="small_text">NOUS SUIVRE</scan></a></li> 
 		    			<li class="sep_menu"></li>
-		    			<li id="contact"><a href=""><span class="big_text">CONTACT</scan><br /><span class="small_text">URBAN TRAPERS</scan></a></li>
+		    			<li id="contact"><a href="#!/contact" title="contact"><span class="big_text">CONTACT</scan><br /><span class="small_text">URBAN TRAPERS</scan></a></li>
 		    			<li class="sep_menu"></li>
 		    			<li id="telecharger"><a href=""><span class="big_text">TÉLÉCHARGER</scan></a></li>
 		    			<li class="clear"></li>
