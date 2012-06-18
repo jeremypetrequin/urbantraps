@@ -103,6 +103,89 @@ table {
 	margin: -9px 0 0;
 }
 
+#menu ul{
+    height: 100%;
+    width: 1000px;
+    color: white;
+	margin: auto;	
+}
+
+#menu li{
+    float: left;	
+}
+
+#menu a{
+    display: block;
+    height: 66px;
+    width: 167px;
+    overflow: hidden;	
+    margin: 2px 0 0 0;
+    padding: 13px 10px 0 10px;
+    color: white;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+#menu a:hover{
+    background: url(images/hover_menu.png) no-repeat;
+}
+
+#menu p{
+    width: auto;
+    margin: auto;
+}
+
+#appli a{
+	width: 159px;
+	padding: 13px 10px 0 8px;
+}
+
+#invasion a{
+	width: 137px;
+	padding: 13px 10px 0 30px;
+}
+
+#blog a{
+	width: 127px;
+	padding: 13px 10px 0 40px;
+}
+
+#contact a{
+	width: 132px;
+	padding: 13px 10px 0 35px;
+}
+
+#telecharger a{
+	background: url(images/btn_telecharger.png) no-repeat scroll 0 2px transparent;
+	padding: 20px 10px 7px;
+	margin: 2px 0 0 10px;
+}
+
+#home a{
+	text-indent: -9000px;	
+	background: url(images/btn_home.png) no-repeat;
+	background-position: left;
+	height: 35px;
+    width: 28px;
+    overflow: hidden;
+    padding: 0;
+    margin: 10px 10px 0 0;
+}
+
+#home a:hover{
+	background: url(images/btn_home.png) no-repeat;
+	background-position: right;
+}
+
+.sep_menu{
+	background: url(images/sep_menu.png) no-repeat;
+	height: 49px;
+    width: 3px;
+    margin: 5px 0 0 0;
+}
+
+
+
 #content{
 	width: 1000px;	
 	margin: auto;
@@ -175,14 +258,25 @@ table {
 	height: 300px;	
 }
 
-#avis{
+.extract_title{
+	width: 379px;
+	height: 45px;
+	margin: 15px auto;
+	background: url(images/bandeau_gris.png) no-repeat;	
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	padding: 10px 0 0;
+}
+
+#avis_extract{
 	width: 495px;
 	height: 291px;
 	float: left;
 	background: url(images/avis.png) no-repeat;
 }
 
-#blog{
+#blog_extract{
 	width: 488px;
 	height: 284px;	
 	float: right;
@@ -194,31 +288,6 @@ table {
 	height: 97px;
 	margin: auto;
 	background: url(images/travaux.png) no-repeat;
-}
-
-#menu>div{
-    margin: 0px auto;
-    padding: 0px;
-    overflow: hidden;
-    position: relative;
-    width: 366px;
-}
-
-#navigation ul {
-    position: relative;
-    z-index: 1000;
-    overflow: hidden;
-}
-
-#navigation li{
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    float: left;
-    display:block;
-    border: 1px solid black;
- 
-    /*background: #00f;*/
 }
 
 .selected_menu{

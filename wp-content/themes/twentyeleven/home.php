@@ -26,8 +26,8 @@
 		<div class="clear"></div>
 	</div>
 	<div id="extracts">
-		<div id="avis"></div>
-		<div id="blog"></div>
+		<div id="avis_extract"><div class="extract_title">LES AVIS</div></div>
+		<div id="blog_extract"><div class="extract_title">LE BLOG</div></div>
 		<div class="clear"></div>
 	</div>
 </div>
