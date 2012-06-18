@@ -57,8 +57,8 @@ class panneau extends pageDefault {
         $json1 = array();
         //build the json for the response, fucking array!
         foreach ($data as $d) {
-            $json1[$d['panneau_ville_id']]['panneau_nom'] = utf8_encode($d['panneau_nom']);
-            $json1[$d['panneau_ville_id']]['panneau_img'] = $d['panneau_img'];
+           // $json1[$d['panneau_ville_id']]['panneau_nom'] = utf8_encode($d['panneau_nom']);
+         //   $json1[$d['panneau_ville_id']]['panneau_img'] = $d['panneau_img'];
             $json1[$d['panneau_ville_id']]['panneau_id'] = $d['panneau_id'];
             $json1[$d['panneau_ville_id']]['lat'] = $d['lat'];
             $json1[$d['panneau_ville_id']]['lng'] = $d['lng'];
@@ -67,9 +67,9 @@ class panneau extends pageDefault {
             if(!is_array($json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']) || $d['score_jeu'] > $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader']['score_jeu']) {
                 $json1[$d['panneau_ville_id']]['jeux'][$d['jeu_id']]['leader'] = array(
                   "joueur_id" => $d['joueur_id'],  
-                  "joueur_nom" => $d['joueur_nom'],  
+               //   "joueur_nom" => $d['joueur_nom'],  
                   "score_jeu" => $d['score_jeu'],  
-                  "joueur_avatar" => $d['joueur_avatar']  
+                //  "joueur_avatar" => $d['joueur_avatar']  
                 );
             }
         }
