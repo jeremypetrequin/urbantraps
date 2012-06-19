@@ -29,8 +29,7 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 body {
-    line-height: 1;
-    background: #e3e3e3;
+    line-height: 150%;
 }
 ol, ul {
     list-style: none;
@@ -53,9 +52,15 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+strong {
+    font-weight: bold;
+}
 body {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
     overflow-y: scroll;
     background: #EFEFEF;
+    color: #464646;
 }
 #gmap {
     position: absolute;
@@ -64,7 +69,7 @@ body {
     height: 100%;
 }
 
-#wrapper{
+.wrapper{
     position: relative;
     z-index: 5;
     width: 100%;
@@ -81,8 +86,8 @@ body {
 }
 
 #header{
-    background: url(images/fond_header.png) repeat-x;	
-    height: 166px;
+    background: url(images/fond_header.png) repeat-x left bottom;	
+    height: 163px;
     width: 100%;
     position: relative;
 }
@@ -108,7 +113,7 @@ body {
     background: url(images/fond_menu.png) repeat-x;
     height: 61px;
     width: 100%;
-    margin: -9px 0 0;
+    margin: -12px 0 0;
 }
 
 #menu ul{
@@ -143,21 +148,24 @@ body {
     margin: auto;
 }
 
-#appli a{
-    width: 159px;
-    padding: 13px 10px 0 8px;
+#application a{
+    padding: 13px 10px 0 20px;
+    width: 147px;
 }
 
 #invasion a{
-    width: 137px;
-    padding: 13px 10px 0 30px;
+    padding: 13px 10px 0 39px;
+    width: 129px;
 }
 
 #blog a{
-    width: 127px;
-    padding: 13px 10px 0 40px;
+    padding: 13px 10px 0 43px;
+    width: 124px;
 }
 
+.contact {
+    font-size: 16px;
+}
 #contact a{
     width: 132px;
     padding: 13px 10px 0 35px;
@@ -165,8 +173,9 @@ body {
 
 #telecharger a{
     background: url(images/btn_telecharger.png) no-repeat scroll 0 2px transparent;
-    padding: 20px 10px 7px;
+    padding: 20px 0 7px;
     margin: 2px 0 0 10px;
+    text-align: center;
 }
 
 #home a{
@@ -180,9 +189,13 @@ body {
     margin: 10px 10px 0 0;
 }
 
-#home a:hover, #home li.active a{
-    /*background: url(images/btn_home.png) no-repeat;*/
+#home a:hover, body #home.active a{
+    background: url(images/btn_home.png) no-repeat;
     background-position: right top;
+}
+
+#telecharger a:hover, body #telecharger.active a{
+    background: url(images/btn_telecharger.png) no-repeat scroll 0 2px transparent;
 }
 
 .sep_menu{
@@ -233,7 +246,6 @@ body {
 #slider{
     width: 1011px;
     height: 411px;
-    margin: 42px 0 0 0;
     overflow: hidden;
     position: relative;
     z-index: 1;
@@ -287,11 +299,13 @@ body {
 }
 
 .big_text{
-    font-size: 22px;	
+    font-size: 18px;	
+    font-weight: bold;
 }
 
 .small_text{
-    font-size: 16px;	
+    font-weight: normal;
+    font-size: 12px;	
 }
 
 #extracts{
@@ -414,9 +428,9 @@ body {
 
 .application {
     background: url(images/appli.png) no-repeat top left;
-    width: 906px;
-    padding: 540px 50px 0 50px;
-    height: 212px;
+    width: 806px;
+    padding: 550px 100px 0 100px;
+    height: 202px;
 }
 
 
@@ -429,9 +443,11 @@ body {
 }
 
 H2 {
-    text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 /*blog */
@@ -477,4 +493,180 @@ h3 {
     position: absolute;
     right: 20px;
     bottom: 20px;
+}
+
+#content.invasion {
+    width: 1px;
+    height: 700px;
+    left: 0px;
+    position:static;
+}
+
+.cluster-number {
+    border-radius: 100px;
+    background: rgba(55, 192, 208, 0.4);
+}
+
+.clusterNumber {
+    top:50%;
+    margin-top: -10px;
+    height:30px;
+    text-align: center;
+    width: 100%;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px #666;
+    position: absolute;
+    color: white;
+}
+
+.inner-cluster {
+    width: 60%;
+    height: 60%;
+    position: relative;
+    top: 20%;
+    left: 20%;
+    border-radius: 100px;
+    display: block;
+    background:#31c1d3;
+    z-index: 1;
+}
+
+.pulse {
+    border: 10px solid #31c1d3;
+    background: transparent;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+    height: 100%;
+    width: 100%;
+    -webkit-animation: pulse 3s ease-out;
+    -moz-animation: pulse 3s ease-out;
+    animation: pulse 3s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    position: absolute;
+    
+    left: -10px;
+    top: -10px;
+    z-index: 0;
+    opacity: 0;
+}
+
+@-moz-keyframes pulse {
+ 0% {
+	-moz-transform: scale(0);
+	opacity: 0.0;
+ }
+ 25% {
+	-moz-transform: scale(0);
+	opacity: 0.1;
+ }
+ 50% {
+	-moz-transform: scale(0.1);
+	opacity: 0.3;
+ }
+ 75% {
+	-moz-transform: scale(0.5);
+	opacity: 0.5;
+ }
+ 100% {
+	-moz-transform: scale(1.5);
+	opacity: 0.0;
+ }
+}
+@-webkit-keyframes "pulse" {
+ 0% {
+	-webkit-transform: scale(0);
+	opacity: 0.0;
+ }
+ 25% {
+	-webkit-transform: scale(0);
+	opacity: 0.1;
+ }
+ 50% {
+	-webkit-transform: scale(0.1);
+	opacity: 0.3;
+ }
+ 75% {
+	-webkit-transform: scale(0.5);
+	opacity: 0.5;
+ }
+ 100% {
+	-webkit-transform: scale(1.5);
+	opacity: 0.0;
+ }
+}
+
+
+/* Invasion */
+
+#legende{
+    position: absolute; 
+    z-index: 15;
+    display: block;
+    left: 50%;
+    margin-left: -315px;
+    overflow: hidden;
+    height: 70px;
+    margin-top:10px;
+    width: 630px;
+}
+
+#legende ul{
+    margin: 0;
+    padding: 0;
+}
+
+#legende li{
+    padding: 0;
+    display: block;
+    float: left;
+    position: relative;
+}
+
+#image_li{
+    width: 452px;
+    z-index: 1000;
+    height: 42px; 
+    margin-left: -17px;
+}
+
+.b-invasion #legende {
+    opacity:1;
+    transition:ease opacity 0.5s;
+    -moz-transition:ease opacity 0.5s;
+    -o-transition:ease opacity 0.5s;
+    -webkit-transition:ease opacity 0.5s;
+    -ms-transition:ease opacity 0.5s;
+}
+
+#legende {
+    opacity:0;
+    
+     transition:ease opacity 0.5s;
+    -moz-transition:ease opacity 0.5s;
+    -o-transition:ease opacity 0.5s;
+    -webkit-transition:ease opacity 0.5s;
+    -ms-transition:ease opacity 0.5s;
+}
+#france_button {
+    display: block;
+    width: 100px;
+    height: 32px;
+    text-indent: -9999px;
+    margin-top: 6px;
+    z-index: 1;
+    background: url(images/btn_france.png) no-repeat top left;
+}
+
+#city_button {
+    margin-top: 6px;
+    display: block;
+    width: 100px;
+    height: 32px;
+    text-indent: -9999px;
+    margin-left: -17px;
+    z-index: 1;
+    background: url(images/btn_ville.png) no-repeat top left;
 }

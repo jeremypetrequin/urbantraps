@@ -40,6 +40,7 @@ window.Gmap = function(elmt, options, style, callBack) {
             panControl : false,
             rotateControl : false,
             scaleControl : false,
+            scrollwheel : false,
             zoomControl : false
      },
      _debugData = {rectangleCluster : []}; //usefull for stored diferent data, debug for clustering for example //
@@ -218,7 +219,7 @@ window.Gmap = function(elmt, options, style, callBack) {
      */
     this.createMarker  = function(point, that) {
         that = that || this;
-    	var defaultPoint = {
+    	/*var defaultPoint = {
 			'id':0,
 			'title':'',
 			'content':'',
@@ -232,27 +233,32 @@ window.Gmap = function(elmt, options, style, callBack) {
     	};
 
     	point = $.extend({},defaultPoint,point);
-
+            
+            */
     	//position
         //if($.isArray(point.localisation)) {
-            point.position = new _gm.LatLng(point.position[0], point.position[1]);
+            //point.position = new _gm.LatLng(point.position[0], point.position[1]);
         //}
-
+            point.map = that.map;
+            point.icon = new google.maps.MarkerImage("wp-content/themes/twentyeleven/images/marker.png", {width:35, height:35});
+            
             //Creation du marker
-            var marker = new UrbanMarker({map: that.map}, point);
+            var marker = new google.maps.Marker(point);
             
             
             /*_gm.event.addListener(marker, 'click', function() {
                 alert(point.id);
             });*/
             
+            that.tabMarkers[point.collection] = that.tabMarkers[point.collection] || [];
+            that.tabMarkers[point.collection].push(marker); //on stock tous les markers dans ce tableau (par collection)
+        
             return marker;
         
 
         //Enregistrement dans le tableau des markers
-        /*
-        that.tabMarkers[point.collection] = that.tabMarkers[point.collection] || [];
-        that.tabMarkers[point.collection].push(marker); //on stock tous les markers dans ce tableau (par collection)*/
+        
+       
 
     }
 

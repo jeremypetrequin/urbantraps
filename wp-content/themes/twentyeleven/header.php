@@ -84,7 +84,7 @@
     <!-- <div id="formulaire_connexion" class="max">
         <?php echo login_with_ajax(); ?>
     </div> -->
-<div id="wrapper" class="hfeed">
+
 	<!--<header role="banner">
                 <div id="banner">
                     <div id="connect_form">
@@ -208,8 +208,8 @@
 	</header> -->
 
 
-	<div id="main">
-		<div id="navigation">
+	
+		<div id="navigation" class="wrapper">
 		    <div id="header">
 		    	<div id="ville"><img src=<?php bloginfo('template_url') ?>/images/logo.png title="" alt="" /></div>
 		    	<div id="menu">

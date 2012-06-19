@@ -81,6 +81,19 @@ class panneau extends pageDefault {
         
         echo json_encode($json1);
     }
+    
+    protected function _getALLPanneau() {
+        $this->_model = new model_panneau();
+        $this->_model->setTable('PanneauVille');
+        $datas = $this->_model->getItems();
+        $json = array();
+        foreach($datas as $d) {
+            $json[] = array($d['lat'], $d['lng']);
+        }
+        
+        echo json_encode($json);
+    }
+    
 
     /**
      * add panneau in a city

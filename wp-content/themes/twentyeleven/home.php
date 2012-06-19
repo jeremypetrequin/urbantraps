@@ -18,7 +18,15 @@ $args = array(
     'post_status' => 'publish'
 );
 ?>
-<div id="content">
+<div id="legende">
+    <ul>
+        <li id="france_li"><a id="france_button">La France</a></li>
+        <li id="image_li"><img src="<?php echo get_template_directory_uri(); ?>/images/invasion_legende.png" /></li>
+        <li id="city_li"><a id="city_button">Ma ville</a></li>
+    </ul>
+</div>
+
+<div id="content" class="wrapper">
 
  
  </div>
